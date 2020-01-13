@@ -15,6 +15,7 @@
 		<hr>
 		<button v-on:click="addClick">Clique</button>
 		<p>Botão clicado {{ numOfClicks }} vezes</p>
+		<p v-on:mousemove="updateCoords">Coords:<br><b>X: </b>{{ coordX }}<br><b>Y: </b>{{ coordY }}</p>
 	</div>
 
 	<script type="text/javascript">
@@ -25,6 +26,8 @@
 				student: 'Luan Novais',
 				docs: 'https://vuejs.org/',
 				numOfClicks: 0,
+				coordX: 0,
+				coordY: 0,
 			},
 			methods: {
 				showStudentName: function() {
@@ -33,6 +36,10 @@
 				},
 				addClick: function() {
 					this.numOfClicks++;
+				},
+				updateCoords: function(event) {
+					this.coordX = event.clientX;
+					this.coordY = event.clientY;
 				}
 			},
 		});
