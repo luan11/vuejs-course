@@ -12,10 +12,17 @@
 		<p v-once>Aluno: <span v-text="student"></span></p>
 		<p>Curso: <span v-html="course"></span> | Aluno: {{ showStudentName() }}</p>
 		<a v-bind:href="docs">VueJS</a>
+
 		<hr>
+
 		<button v-on:click="addClick">Clique</button>
 		<p>Botão clicado {{ numOfClicks }} vezes</p>
 		<p v-on:mousemove="updateCoords">Coords:<br><b>X: </b>{{ coordX }}<br><b>Y: </b>{{ coordY }}</p>
+
+		<hr>
+
+		<input type="text" v-on:blur="showName('My name is: ', $event)">
+		<p>{{ name }}</p>
 	</div>
 
 	<script type="text/javascript">
@@ -24,6 +31,7 @@
 			data: {
 				course: '<span style="color: red;">VueJS</span>',
 				student: 'Luan Novais',
+				name: '',
 				docs: 'https://vuejs.org/',
 				numOfClicks: 0,
 				coordX: 0,
@@ -34,13 +42,19 @@
 					this.student = 'Luan';
 					return this.student;
 				},
+
 				addClick: function() {
 					this.numOfClicks++;
 				},
+
 				updateCoords: function(event) {
 					this.coordX = event.clientX;
 					this.coordY = event.clientY;
-				}
+				},
+
+				showName: function(txt, event) {
+					this.name = txt + event.target.value;
+				},
 			},
 		});
 	</script>
