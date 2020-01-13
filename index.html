@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>VueJS - Course</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<p v-once>Aluno: <span v-text="student"></span></p>
+		<p>Curso: <span v-html="course"></span> | Aluno: {{ showStudentName() }}</p>
+		<a v-bind:href="docs">VueJS</a>
+		<hr>
+		<button v-on:click="addClick">Clique</button>
+		<p>Botão clicado {{ numOfClicks }} vezes</p>
+	</div>
+
+	<script type="text/javascript">
+		new Vue({
+			el: '#app',
+			data: {
+				course: '<span style="color: red;">VueJS</span>',
+				student: 'Luan Novais',
+				docs: 'https://vuejs.org/',
+				numOfClicks: 0,
+			},
+			methods: {
+				showStudentName: function() {
+					this.student = 'Luan';
+					return this.student;
+				},
+				addClick: function() {
+					this.numOfClicks++;
+				}
+			},
+		});
+	</script>
+</body>
+</html>
+
+<!-- NOTES -->
+<script>
+	/* 
+		v-html: renderiza elementos html
+		v-bind:nomeDoAttr: insere dados nos atributos html
+		v-once: renderiza o conteudo apenas uma vez
+		v-text: insere algum texto no elemento sem as diretivas "{{  }}"
+		v-on:nomeDoEvento: dispara alguma função quando ocorrer este evento
+	*/
+</script>
+<!-- END OF NOTES -->
