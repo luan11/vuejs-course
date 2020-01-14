@@ -36,6 +36,17 @@
 			<button type="submit" v-on:click="onSubmit">Send without modifier</button>
 			<button type="submit" v-on:click.prevent="onSubmit">Send with modifier</button>
 		</form>
+
+		<hr>
+		<input v-on:keyup="onKey" placeholder="Any key">
+		<br>
+		<input v-on:keyup.enter="onKey" placeholder="Enter key">
+		<br>
+		<input v-on:keyup.enter.esc="onKey" placeholder="Enter key or Escape">
+		<br>
+		<input v-on:keyup.arrow-up="onKey" placeholder="Key ArrowUp">
+		<br>
+		<input v-on:keyup.ctrl.enter.exact="onKey" placeholder="Keys CTRL + ENTER (exact)">
 	</div>
 
 	<script type="text/javascript">
@@ -75,6 +86,10 @@
 
 				onSubmit: function(event) {
 					console.log('Formulário enviado!');
+				},
+
+				onKey: function(event) {
+					console.log('Key: ' + event.key + ' pressed');
 				},
 			},
 		});
