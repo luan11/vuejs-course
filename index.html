@@ -23,6 +23,19 @@
 
 		<input type="text" v-on:blur="showName('My name is: ', $event)">
 		<p>{{ name }}</p>
+
+		<hr>
+
+		<p v-on:click="onClick('p', $event)">
+			Curso de VueJS
+			<button v-on:click.stop="onClick('button', $event)">Clique</button>
+		</p>
+
+		<form>
+			<input type="text">
+			<button type="submit" v-on:click="onSubmit">Send without modifier</button>
+			<button type="submit" v-on:click.prevent="onSubmit">Send with modifier</button>
+		</form>
 	</div>
 
 	<script type="text/javascript">
@@ -54,6 +67,14 @@
 
 				showName: function(txt, event) {
 					this.name = txt + event.target.value;
+				},
+
+				onClick: function(targetEl, event) {
+					console.log(event.type, ':', targetEl);
+				},
+
+				onSubmit: function(event) {
+					console.log('Formulário enviado!');
 				},
 			},
 		});
