@@ -58,7 +58,12 @@
 		<button v-on:click.right="onClick2">Right button</button>
 		<br>
 		<button v-on:click.right.prevent="onClick2">Right button / no context menu</button>
-		
+
+		<hr>
+
+		<a :href="docs">Vue JS</a>
+		<br>
+		<button @click="onClick('button', $event)">Clique</button>
 	</div>
 
 	<script type="text/javascript">
@@ -106,7 +111,9 @@
 
 				onClick2: function(event) {
 					console.log('Button ' + event.button + ' pressed!');
-				}
+				},
+
+
 			},
 		});
 	</script>
