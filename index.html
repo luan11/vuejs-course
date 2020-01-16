@@ -38,6 +38,7 @@
 		</form>
 
 		<hr>
+
 		<input v-on:keyup="onKey" placeholder="Any key">
 		<br>
 		<input v-on:keyup.enter="onKey" placeholder="Enter key">
@@ -47,6 +48,17 @@
 		<input v-on:keyup.arrow-up="onKey" placeholder="Key ArrowUp">
 		<br>
 		<input v-on:keyup.ctrl.enter.exact="onKey" placeholder="Keys CTRL + ENTER (exact)">
+
+		<hr>
+
+		<button v-on:click.left="onClick2">Left button</button>
+		<br>
+		<button v-on:click.middle="onClick2">Middle button</button>
+		<br>
+		<button v-on:click.right="onClick2">Right button</button>
+		<br>
+		<button v-on:click.right.prevent="onClick2">Right button / no context menu</button>
+		
 	</div>
 
 	<script type="text/javascript">
@@ -91,6 +103,10 @@
 				onKey: function(event) {
 					console.log('Key: ' + event.key + ' pressed');
 				},
+
+				onClick2: function(event) {
+					console.log('Button ' + event.button + ' pressed!');
+				}
 			},
 		});
 	</script>
