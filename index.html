@@ -64,12 +64,19 @@
 		<a :href="docs">Vue JS</a>
 		<br>
 		<button @click="onClick('button', $event)">Clique</button>
+
+		<hr>
+
+		<p>{{ cleanCourse }} => {{ cleanCourse.split('').reverse().join('') }}</p>
+		<p>{{ cleanCourse }} => {{ invertedCourse }}</p>
+		<input @keyup.enter="changeCourseName">
 	</div>
 
 	<script type="text/javascript">
 		new Vue({
 			el: '#app',
 			data: {
+				cleanCourse: 'Vue JS',
 				course: '<span style="color: red;">VueJS</span>',
 				student: 'Luan Novais',
 				name: '',
@@ -113,7 +120,14 @@
 					console.log('Button ' + event.button + ' pressed!');
 				},
 
-
+				changeCourseName: function(event) {
+					this.cleanCourse = event.target.value;
+				}
+			},
+			computed: {
+				invertedCourse: function() {
+					return this.cleanCourse.split('').reverse().join('');
+				},
 			},
 		});
 	</script>
