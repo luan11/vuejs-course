@@ -70,6 +70,16 @@
 		<p>{{ cleanCourse }} => {{ cleanCourse.split('').reverse().join('') }}</p>
 		<p>{{ cleanCourse }} => {{ invertedCourse }}</p>
 		<input @keyup.enter="changeCourseName">
+
+		<hr>
+
+		<p>Original name: {{ cleanCourse }}</p>
+		<p>Inverted name (Computed): {{ invertedCourse }}</p>
+		<p>Inverted name (Method): {{ invertedCourseMethod() }}</p>
+		<p>Autor: {{ fullAuthorName ? 'Plínio Naves' : 'Plínio' }}</p>
+		<button @click="fullAuthorName = !fullAuthorName">Alter author name</button>
+		<br>		
+		<input @keyup.enter="changeCourseName">
 	</div>
 
 	<script type="text/javascript">
@@ -84,6 +94,7 @@
 				numOfClicks: 0,
 				coordX: 0,
 				coordY: 0,
+				fullAuthorName: false,
 			},
 			methods: {
 				showStudentName: function() {
@@ -122,10 +133,16 @@
 
 				changeCourseName: function(event) {
 					this.cleanCourse = event.target.value;
-				}
+				},
+
+				invertedCourseMethod: function() {
+					console.log('Method');
+					return this.cleanCourse.split('').reverse().join('');
+				},
 			},
 			computed: {
 				invertedCourse: function() {
+					console.log('Computed');
 					return this.cleanCourse.split('').reverse().join('');
 				},
 			},
