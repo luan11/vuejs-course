@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>VueJS - Course</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<p>Nome: {{ fullName }}</p>
+		<input @keyup.enter="changeName">
+	</div>
+
+	<script type="text/javascript">
+		new Vue({
+			el: '#app',
+			data: {
+				firstName: 'Luan',
+				lastName: 'Novais',
+			},
+			computed: {
+				fullName: {
+					get: function() {
+						return this.firstName + ' ' + this.lastName;
+					},
+					set: function(newName) {
+						var names = newName.split(' ');
+						this.firstName = names[0];
+						this.lastName = names[names.length - 1];
+					}
+				},
+			},
+			methods: {
+				changeName: function(event) {
+					this.fullName = event.target.value;
+				},
+			},
+		});
+	</script>
+</body>
+</html>
+
+<!-- NOTES -->
+<script>
+	/* 
+		v-html: renderiza elementos html
+		v-bind:nomeDoAttr: insere dados nos atributos html
+		v-once: renderiza o conteudo apenas uma vez
+		v-text: insere algum texto no elemento sem as diretivas "{{  }}"
+		v-on:nomeDoEvento: dispara alguma função quando ocorrer este evento
+	*/
+</script>
+<!-- END OF NOTES -->
