@@ -80,6 +80,11 @@
 		<button @click="fullAuthorName = !fullAuthorName">Alter author name</button>
 		<br>		
 		<input @keyup.enter="changeCourseName">
+
+		<hr>
+
+		<p>Nome: {{ fullName }}</p>
+		<button @click="changeNames">Change names</button>
 	</div>
 
 	<script type="text/javascript">
@@ -88,6 +93,9 @@
 			data: {
 				cleanCourse: 'Vue JS',
 				course: '<span style="color: red;">VueJS</span>',
+				studentFirstName: 'Luan',
+				studentLastName: 'Novais',
+				// studentFullName: 'Luan Novais',
 				student: 'Luan Novais',
 				name: '',
 				docs: 'https://vuejs.org/',
@@ -139,13 +147,31 @@
 					console.log('Method');
 					return this.cleanCourse.split('').reverse().join('');
 				},
+
+				changeNames: function(event) {
+					this.studentFirstName = 'Novais';
+					this.studentLastName = 'Luan';
+				}
 			},
 			computed: {
 				invertedCourse: function() {
 					console.log('Computed');
 					return this.cleanCourse.split('').reverse().join('');
 				},
+
+				fullName: function() {
+					return this.studentFirstName + ' ' + this.studentLastName;
+				},
 			},
+			/* watch: {
+				studentFirstName: function(newFirstName, oldFirstName) {
+					this.studentFullName = newFirstName + ' ' + this.studentLastName;
+				},
+
+				studentLastName: function(newLastName, oldLastName) {
+					this.studentFullName = this.studentFirstName + ' ' + newLastName;
+				}
+			}, */
 		});
 	</script>
 </body>
