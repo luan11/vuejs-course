@@ -19,11 +19,26 @@
 		.coral {
 			background-color: lightcoral;
 		}
+
+		.green {
+			background-color: lightgreen;
+		}
+
+		.blue {
+			background-color: lightblue;
+		}
+
+		.circle {
+			border-radius: 100%;
+		}
 	</style>
 </head>
 <body>
 	<div id="app">
 		<div class="box" :class="{ coral: applyClass }" @click="applyClass = !applyClass"></div>
+		<hr>
+		<div class="box" :class="className"></div>
+		<input v-model="className" placeholder="Name of CSS class">
 	</div>
 
 	<script type="text/javascript">
@@ -31,6 +46,7 @@
 			el: '#app',
 			data: {
 				applyClass: false,
+				className: '',
 			},
 		});
 	</script>
