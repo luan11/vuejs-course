@@ -45,6 +45,10 @@
 		<hr>
 		
 		<div class="box" :class="cssClasses" @click="applyClass = !applyClass"></div>
+
+		<hr>
+
+		<div class="box" :class="['circle', className, { green: applyClass }]"></div>
 	</div>
 
 	<script type="text/javascript">
