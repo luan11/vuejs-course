@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>VueJS - Course</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+	<style>
+		#app div {
+			display: inline-block;
+			margin-right: 10px;
+			background-color: gray;
+		}
+	</style>
+</head>
+<body>
+	<div id="app">
+		<div 
+			style="width: 200px; height: 200px;"
+			:style="{ 'background-color': color, height: size + 'px' }"	
+		></div>
+		<div :style="cssStylesheet"></div>
+		<div :style="[ cssStylesheet, { border: '2px solid #000', 'background-color': 'blue' } ]"></div>
+		<div :style="{ display: ['-webkit-box', '-ms-flexbox', 'flexbox'] }"></div>
+		<input v-model="color" placeholder="Color">
+		<input v-model.number="size" placeholder="Size in px">
+	</div>
+
+	<script type="text/javascript">
+		new Vue({
+			el: '#app',
+			data: {
+				color: '',
+				size: 200,
+			},
+			computed: {
+				cssStylesheet: function() {
+					return {
+						backgroundColor: this.color,
+						width: '100px',
+						height: (this.size + 10) + 'px',
+					};
+				},
+			}
+		});
+	</script>
+</body>
+</html>
