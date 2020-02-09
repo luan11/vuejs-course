@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>VueJS - Course</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<h1>Products</h1>
+		<ul>
+			<li v-for="product in products">{{ text }}: {{ product }}</li> <!-- Can be used: product of products -->
+			<hr>
+			<!-- Show the index of item -->
+			<li v-for="(product, index) in products">{{ text }}: {{ index }} - {{ product }}</li>
+		</ul>
+	</div>
+
+	<script type="text/javascript">
+		new Vue({
+			el: '#app',
+			data: {
+				text: 'Product',
+				products: [
+					'Monitor',
+					'Keyboard',
+					'Mouse'
+				],
+			},
+		});
+	</script>
+</body>
+</html>
