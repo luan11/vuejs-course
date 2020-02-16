@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>VueJS - Course</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<h1>Tasks:</h1>
+		<ul>
+			<li v-for="task in tasks" :key="task.id" v-if="!task.complete">{{ task.title }}</li>
+		</ul>
+		<hr>
+		<h1>Tasks to do:</h1>
+		<ul v-if="tasksToDo.length">
+			<li v-for="task in tasksToDo" :key="task.id">{{ task.title }}</li>
+		</ul>
+		<p v-else>No tasks to do</p>
+	</div>
+
+	<script type="text/javascript">
+		new Vue({
+			el: '#app',
+			data: {
+				tasks: [
+					{
+						id: 1,
+						title: 'Learn JavaScript',
+						complete: true,
+					},
+					{
+						id: 2,
+						title: 'Learn VueJS',
+						complete: false,
+					},
+					{
+						id: 3,
+						title: 'Learn Vuex',
+						complete: false,
+					},
+					{
+						id: 4,
+						title: 'Learn VueRouter',
+						complete: false,
+					},
+				],
+			},
+			computed: {
+				tasksToDo: function() {
+					return this.tasks.filter(function(task) {
+						return !task.complete;
+					});
+				}
+			},
+		});
+	</script>
+</body>
+</html>
