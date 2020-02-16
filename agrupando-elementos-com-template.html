@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>VueJS - Course</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<style>
+		.separator {
+			list-style-type: none;
+			border-bottom: 1px solid #000;
+		}
+	</style>
+</head>
+<body>
+	<div id="app">
+		<p>Products:</p>
+		<ul>
+			<template v-for="product in products">
+				<li>{{ product.name }}</li>
+				<li class="separator"></li>
+			</template>
+		</ul>
+	</div>
+
+	<script type="text/javascript">
+		new Vue({
+			el: '#app',
+			data: {
+				products: [
+					{
+						id: 1,
+						name: 'Monitor'
+					},
+					{
+						id: 2,
+						name: 'Keyboard'
+					},
+					{
+						id: 3,
+						name: 'Mouse'
+					},
+					{
+						id: 4,
+						name: 'Processor'
+					},
+				],
+			},
+		});
+	</script>
+</body>
+</html>

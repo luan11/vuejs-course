@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>VueJS - Course</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<p>Products</p>
+		<ul>
+			<li v-for="product in products">{{ product.name }}</li>
+		</ul>
+		<hr>
+		<ul>
+			<li v-for="product in products" :key="product.id">{{ product.name }}</li>
+		</ul>
+		<button @click="products.reverse()">Invert List</button>
+		<button @click="addProduct">Add product</button>
+	</div>
+
+	<script type="text/javascript">
+		new Vue({
+			el: '#app',
+			data: {
+				products: [
+					{
+						id: 1,
+						name: 'Monitor'
+					},
+					{
+						id: 2,
+						name: 'Keyboard'
+					},
+					{
+						id: 3,
+						name: 'Mouse'
+					},
+					{
+						id: 4,
+						name: 'Processor'
+					},
+				],
+			},
+			methods: {
+				addProduct: function() {
+					var id = this.products.length + 1;
+					this.products.push({
+						id: id,
+						name: 'Product ' + id
+					});
+				}
+			},
+		});
+	</script>
+</body>
+</html>
