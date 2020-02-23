@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>VueJS - Course</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<h1>Objects</h1>
+		<ul>
+			<li v-for="(value, key) in product">{{ key }}: {{ value }}</li>
+		</ul>
+		<button type="button" @click="addProperty">Add property</button>
+		<button type="button" @click="replaceObject">Replace object</button>
+	</div>
+
+	<script type="text/javascript">
+		new Vue({
+			el: '#app',
+			data: {
+				product: {
+					id: 2,
+					name: 'Keyboard',
+					brand: 'Dell',
+				},
+				user: {
+					name: '',
+					age: 0,
+				},
+			},
+			methods: {
+				addProperty: function(e) {
+					this.$set(this.product, 'price', 100);
+				},
+				replaceObject: function(e) {
+					this.product = Object.assign({}, this.product, {
+						price: 50,
+						color: 'black',
+					});
+				},
+			},
+		});
+	</script>
+</body>
+</html>
