@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>VueJS - Guia completo</title>
+    <script type="text/javascript" src="https://unpkg.com/vue"></script>
+</head>
+<body>
+
+    <div id="app">
+        <h3 v-if="mostrarMensagem">Título alterado!</h3>
+        <p>Título: {{ titulo }}</p>
+        <p>Título lower case: {{ tituloLowerCase }}</p>
+        <input v-model="novoTitulo">
+        <button @click="alterarTitulo">Alterar titulo</button>
+    </div>
+
+    <script type="text/javascript">
+    
+        new Vue({
+            el: '#app',
+            data: {
+                titulo: 'Instância Vue',
+                novoTitulo: '',
+                mostrarMensagem: false
+            },
+            methods: {
+                alterarTitulo: function() {
+                    this.titulo = this.novoTitulo;
+                    this.novoTitulo = '';
+                }
+            },
+            computed: {
+                tituloLowerCase: function() {
+                    return this.titulo.toLowerCase().split(' ').join('-');
+                }
+            },
+            watch: {
+                titulo: function(novoTitulo, antigoTitulo) {
+                    console.log('Título alterado: ', 'de "', antigoTitulo, '" para "', novoTitulo, '"');
+                    this.mostrarMensagem = true;
+                    var self = this;
+                    setTimeout(function () { 
+                        self.mostrarMensagem = false; 
+                    }, 3000);
+                }
+            }
+        });
+
+    </script>
+    
+</body>
+</html>

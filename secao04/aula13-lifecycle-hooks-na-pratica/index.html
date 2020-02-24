@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>VueJS - Guia completo</title>
+    <script type="text/javascript" src="https://unpkg.com/vue"></script>
+</head>
+<body>
+
+    <div id="app">
+        <h2>{{ titulo }}</h2>  
+        <button @click="alterarTitulo">Alterar titulo</button>
+        <button @click="destruirInstancia">Destruir instância</button>
+    </div>
+
+    <script type="text/javascript">
+
+        var vm = new Vue({
+            // el: '#app',
+            data: {
+                titulo: 'Curso de VueJS'
+            },
+            methods: {
+                alterarTitulo: function(event) {
+                    this.titulo = 'Curso de VueJS - Guia Completo'
+                },
+                destruirInstancia: function(event) {
+                    this.$destroy();
+                }
+            },
+            beforeCreate: function() {
+                console.log('01 - beforeCreate()');
+            },
+            created: function() {
+                console.log('02 - created()');
+            },
+            beforeMount: function() {
+                console.log('03 - beforeMount()');
+            },
+            mounted: function() {
+                console.log('04 - mounted()');
+            },
+            beforeUpdate: function() {
+                console.log('05 - beforeUpdate()');
+            },
+            updated: function() {
+                console.log('06 - updated()');
+            },
+            beforeDestroy: function() {
+                console.log('07 - beforeDestroy()');
+            },
+            destroyed: function() {
+                console.log('08 - destroyed()');
+            }
+        });
+
+        setTimeout(function() {
+            vm.$mount('#app');
+        }, 3000);
+
+    </script>
+    
+</body>
+</html>
