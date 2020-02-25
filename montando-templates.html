@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>VueJS - Course</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<h2>{{ course }}</h2>
+	</div>
+
+	<div id="app2"></div>
+
+	<script type="text/javascript">
+		var vm = new Vue({
+			data: {
+				course: 'VueJS',
+			},
+		});
+
+		// vm.$mount('#app');
+
+		setTimeout(function() {
+			vm.$mount('#app');
+		}, 3000);
+
+		var vm2 = new Vue({
+			template: '<h2>Using Template</h2>'
+		});
+
+		// vm2.$mount('#app2');
+
+		vm2.$mount();
+		document.getElementById('app2').appendChild(vm2.$el);
+	</script>
+</body>
+</html>
