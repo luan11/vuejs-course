@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>VueJS - Course</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<h2>{{ title }}</h2>
+		<button @click="alterTitle">Alter title</button>
+		<button @click="destroyInstance">Destroy</button>
+	</div>
+
+	<script type="text/javascript">
+		var vm = new Vue({
+			// el: '#app',
+			data: {
+				title: 'VueJS Course',
+			},
+			methods: {
+				alterTitle: function(event) {
+					this.title = 'VueJS Course - Complete Guide'
+				},
+				destroyInstance: function(event) {
+					this.$destroy();
+				}
+			},
+			beforeCreate: function() {
+				console.log('beforeCreate() - 01');
+			},
+			created: function() {
+				console.log('created() - 02');
+			},
+			beforeMount: function() {
+				console.log('beforeMount() - 03');
+			},
+			mounted: function() {
+				console.log('mounted() - 04');
+			},
+			beforeUpdate: function() {
+				console.log('beforeUpdate() - 05');
+			},
+			updated: function() {
+				console.log('updated() - 06');
+			},
+			beforeDestroy: function() {
+				console.log('beforeDestroy() - 07');
+			},
+			destroyed: function() {
+				console.log('destroyed() - 08');
+			},
+		});
+
+		setTimeout(function() {
+			vm.$mount('#app');
+		}, 3000);
+	</script>
+</body>
+</html>
