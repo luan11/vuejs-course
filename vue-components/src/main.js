@@ -5,7 +5,10 @@ import Vue from 'vue'
   count: 0
 }; */
 
-Vue.component('ln-component', {
+/**
+ * Este é um component global
+ */
+/* Vue.component('ln-component', {
   data: () => {
     return {
       title: 'VueJS Course',
@@ -23,8 +26,41 @@ Vue.component('ln-component', {
     <button @click="increment">Clicked {{ count }} times</button>
   </div>
   `
-})
+}) */
+
+/**
+ * Component local
+ */
+const lnComponent = {
+  data: () => {
+    return {
+      title: 'VueJS Course',
+      count: 0
+    };
+  },
+  methods: {
+    increment: function() {
+      this.count++;
+    }
+  },
+  template: `
+  <div>
+    <h1>{{ title }}</h1>
+    <button @click="increment">Clicked {{ count }} times</button>
+  </div>
+  `
+};
 
 new Vue({
-  el: '#app'
+  el: '#app1',
+  components: {
+    'ln-component': lnComponent
+  }
+})
+/**
+ * Fim Component local
+ */
+
+new Vue({
+  el: '#app2'
 })
