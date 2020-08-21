@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<AppHeader/>
-		<AppCounter/>
+		<Counter/>
 	</div>
 </template>
 
@@ -10,13 +10,13 @@
  * Registro local do component AppCounter.vue
  */
 
-import AppCounter from './AppCounter'
-import AppHeader from './AppHeader'
+import AppHeader from './components/shared/AppHeader'
+import Counter from './components/counter/Counter'
 
 export default {
 	components: {
-		AppCounter,
-		AppHeader
+		AppHeader,
+		Counter
 	}
 }
 </script>
