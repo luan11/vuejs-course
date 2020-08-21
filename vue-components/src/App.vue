@@ -1,5 +1,8 @@
 <template>
-	<app-counter></app-counter>
+	<div>
+		<AppHeader/>
+		<AppCounter/>
+	</div>
 </template>
 
 <script>
@@ -8,10 +11,12 @@
  */
 
 import AppCounter from './AppCounter'
+import AppHeader from './AppHeader'
 
 export default {
 	components: {
-		'app-counter': AppCounter
+		AppCounter,
+		AppHeader
 	}
 }
 </script>
