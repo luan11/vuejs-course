@@ -1,66 +1,13 @@
 import Vue from 'vue'
 
-/* const data = {
-  title: 'VueJS Course',
-  count: 0
-}; */
+import App from './App.vue'
+// import AppCounter from './AppCounter.vue'
 
 /**
- * Este é um component global
+ * Registro Global
  */
-/* Vue.component('ln-component', {
-  data: () => {
-    return {
-      title: 'VueJS Course',
-      count: 0
-    };
-  },
-  methods: {
-    increment: function() {
-      this.count++;
-    }
-  },
-  template: `
-  <div>
-    <h1>{{ title }}</h1>
-    <button @click="increment">Clicked {{ count }} times</button>
-  </div>
-  `
-}) */
-
-/**
- * Component local
- */
-const lnComponent = {
-  data: () => {
-    return {
-      title: 'VueJS Course',
-      count: 0
-    };
-  },
-  methods: {
-    increment: function() {
-      this.count++;
-    }
-  },
-  template: `
-  <div>
-    <h1>{{ title }}</h1>
-    <button @click="increment">Clicked {{ count }} times</button>
-  </div>
-  `
-};
+// Vue.component('app-counter', AppCounter);
 
 new Vue({
-  el: '#app1',
-  components: {
-    'ln-component': lnComponent
-  }
-})
-/**
- * Fim Component local
- */
-
-new Vue({
-  el: '#app2'
-})
+  render: h => h(App)
+}).$mount('#app')
