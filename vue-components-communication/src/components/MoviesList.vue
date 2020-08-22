@@ -7,9 +7,7 @@
 				<MoviesListItem
 					v-for="movie in movies"
 					:key="movie.id"
-					class="dark-theme"
-					placeholder="Movie title"
-					v-bind="movie"
+					:movie="movie"
 				/>
 			</ul>
 		</div>
