@@ -14,18 +14,31 @@
 			</ul>
 		</div>
 		<div class="col-4">
-			<MoviesListItemInfo :movie="selectedMovie"/>
+			<MoviesListItemInfo 
+				v-if="!edit"
+				:movie="selectedMovie"
+				@movieEdit="movieEdit"
+			/>
+
+			<MoviesListItemEdit
+				v-else
+				:movie="selectedMovie"
+			/>
 		</div>
 	</div>
 </template>
 
 <script>
+import { eventBus } from './../main'
+
 import MoviesListItem from './MoviesListItem'
+import MoviesListItemEdit from './MoviesListItemEdit'
 import MoviesListItemInfo from './MoviesListItemInfo'
 
 export default {
 	components: {
 		MoviesListItem,
+		MoviesListItemEdit,
 		MoviesListItemInfo
 	},
 	data() {
@@ -56,7 +69,8 @@ export default {
 					director: 'Stan Lee'
 				}
 			],
-			selectedMovie: undefined
+			selectedMovie: undefined,
+			edit: false
 		}
 	},
 	methods: {
@@ -64,7 +78,24 @@ export default {
 			return {
 				active: this.selectedMovie && this.selectedMovie.id === iteratedMovie.id
 			}
+		},
+		movieEdit(movie) {
+			this.edit = true
+			this.selectedMovie = movie
+		},
+		updateMovie(movieUpdate) {
+			const i = this.movies.findIndex(movie => movie.id === movieUpdate.id)
+			this.movies.splice(i, 1, movieUpdate);
+			this.selectedMovie = undefined;
+			this.edit = false;
 		}
+	},
+	created() {
+		eventBus.$on('selectMovie', selectedMovie => {
+			this.selectedMovie = selectedMovie
+		})
+
+		eventBus.$on('updateMovie', this.updateMovie)
 	}
 }
 </script>

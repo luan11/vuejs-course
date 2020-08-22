@@ -17,7 +17,7 @@ export default {
 	},
 	methods: {
 		select() {
-			eventBus.$emit('selectMovie', this.movie)
+			eventBus.selectMovie(this.movie)
 		}
 	}
 }
