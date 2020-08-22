@@ -7,6 +7,8 @@
 				<MoviesListItem
 					v-for="movie in movies"
 					:key="movie.id"
+					class="dark-theme"
+					placeholder="Movie title"
 					v-bind="movie"
 				/>
 			</ul>
@@ -32,22 +34,26 @@ export default {
 				{
 					id: 1,
 					title: 'Avengers: Infinity War',
-					year: 2018
+					year: 2018,
+					director: 'Stan Lee'
 				},
 				{
 					id: 2,
 					title: 'Iron Man',
-					year: 2018
+					year: 2018,
+					director: 'Stan Lee'
 				},
 				{
 					id: 3,
 					title: 'Black Panter',
-					year: 2018
+					year: 2018,
+					director: 'Stan Lee'
 				},
 				{
 					id: 4,
 					title: 'Deadpool 2',
-					year: 2018
+					year: 2018,
+					director: 'Stan Lee'
 				}
 			]
 		}
