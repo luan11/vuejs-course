@@ -1,7 +1,7 @@
 <template>
 	<li class="list-group-item">
 		<span>{{ movie.title }} | {{ movie.year }}</span>
-		<button class="btn btn-secondary float-right">Select</button>
+		<button @click="select" class="btn btn-secondary float-right">Select</button>
 	</li>
 </template>
 
@@ -11,6 +11,11 @@ export default {
 		movie: {
 			type: Object,
 			required: true
+		}
+	},
+	methods: {
+		select() {
+			this.$emit('selectMovie', this.movie)
 		}
 	}
 }

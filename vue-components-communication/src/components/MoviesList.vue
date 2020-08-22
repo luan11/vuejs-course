@@ -8,6 +8,8 @@
 					v-for="movie in movies"
 					:key="movie.id"
 					:movie="movie"
+					:class="applyActiveClass(movie)"
+					@selectMovie="selectedMovie = $event"
 				/>
 			</ul>
 		</div>
@@ -53,7 +55,15 @@ export default {
 					year: 2018,
 					director: 'Stan Lee'
 				}
-			]
+			],
+			selectedMovie: undefined
+		}
+	},
+	methods: {
+		applyActiveClass(iteratedMovie) {
+			return {
+				active: this.selectedMovie && this.selectedMovie.id === iteratedMovie.id
+			}
 		}
 	}
 }
