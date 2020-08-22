@@ -14,9 +14,18 @@
 </template>
 
 <script>
+import { eventBus } from './../main'
+
 export default {
-	props: {
-		movie: Object
+	data() {
+		return {
+			movie: undefined
+		}
+	},
+	created() {
+		eventBus.$on('selectMovie', selectedMovie => {
+			this.movie = selectedMovie
+		})
 	}
 }
 </script>
