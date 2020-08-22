@@ -3,13 +3,13 @@
 		<div class="col-8">
 			<h2>Movies</h2>
 
-			<div class="list-group list-group-flush">
+			<ul class="list-group list-group-flush">
 				<MoviesListItem
-					v-for="(movie, i) in movies"
-					:key="i"
-					:movieTitle="movie"
+					v-for="movie in movies"
+					:key="movie.id"
+					v-bind="movie"
 				/>
-			</div>
+			</ul>
 		</div>
 		<div class="col-4">
 			<MoviesListItemInfo/>
@@ -29,10 +29,26 @@ export default {
 	data() {
 		return {
 			movies: [
-				'Avengers: Infinity War',
-				'Iron Man',
-				'Black Panter',
-				'Deadpool 2'
+				{
+					id: 1,
+					title: 'Avengers: Infinity War',
+					year: 2018
+				},
+				{
+					id: 2,
+					title: 'Iron Man',
+					year: 2018
+				},
+				{
+					id: 3,
+					title: 'Black Panter',
+					year: 2018
+				},
+				{
+					id: 4,
+					title: 'Deadpool 2',
+					year: 2018
+				}
 			]
 		}
 	}
