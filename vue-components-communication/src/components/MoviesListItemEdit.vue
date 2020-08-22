@@ -59,6 +59,11 @@ export default {
 			}
 		}
 	},
+	watch: {
+		movie(newMovie) {
+			this.localMovie = Object.assign({}, newMovie)
+		}
+	},
 	methods: {
 		saveMovie() {
 			eventBus.updateMovie(this.localMovie);
