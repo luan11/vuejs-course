@@ -1,6 +1,7 @@
 <template>
 	<div>
 		<AppHeader/>
+		<CounterInfo/>
 		<Counter/>
 	</div>
 </template>
@@ -12,11 +13,13 @@
 
 import AppHeader from './components/shared/AppHeader'
 import Counter from './components/counter/Counter'
+import CounterInfo from './components/counter/CounterInfo'
 
 export default {
 	components: {
 		AppHeader,
-		Counter
+		Counter,
+		CounterInfo
 	}
 }
 </script>
