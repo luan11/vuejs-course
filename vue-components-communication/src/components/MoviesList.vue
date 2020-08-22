@@ -14,7 +14,7 @@
 			</ul>
 		</div>
 		<div class="col-4">
-			<MoviesListItemInfo/>
+			<MoviesListItemInfo :movie="selectedMovie"/>
 		</div>
 	</div>
 </template>
