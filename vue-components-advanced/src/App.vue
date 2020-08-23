@@ -1,11 +1,15 @@
 <template>
-  <div id="app">
+  <div id="app" class="container">
     <h1>Vue</h1>
 
     <!-- <Post :title="'Components'"/> -->
     <Post>
-      <h2>Components Vue</h2>
-      <p>Lorem ipsum dolor sit amet consectetur.</p>
+      <h2 slot="post-header">Components Vue</h2>
+      <template slot="post-content">
+        <p>Lorem ipsum dolor sit amet consectetur.</p>
+        <span>...</span>
+      </template>
+      <small slot="post-footer">by Luan Novais</small>
     </Post>
     <!-- <Post :title="'Data by props'"/> -->
   </div>
@@ -20,3 +24,10 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  .container {
+    width: 960px;
+    margin: auto;
+  }
+</style>
