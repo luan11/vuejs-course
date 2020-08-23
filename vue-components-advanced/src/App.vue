@@ -6,10 +6,10 @@
     <Post>
       <h2 slot="post-header">Components Vue</h2>
       
-      <p>Lorem ipsum dolor sit amet consectetur.</p>
+      <p class="post-p">Lorem ipsum dolor sit amet consectetur.</p>
       <span>...</span>
 
-      <small slot="post-footer">by Luan Novais</small>
+      <small slot="post-footer">by {{ author }}</small>
 
       <template slot="button">Detalhes</template>
     </Post>
@@ -23,6 +23,11 @@ import Post from './components/Post'
 export default {
   components: {
     Post
+  },
+  data() {
+    return {
+      author: 'Luan Novais'
+    };
   }
 }
 </script>

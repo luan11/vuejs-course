@@ -46,4 +46,8 @@
 	.link {
 		float: right;
 	}
+
+	.post-p {
+		color: blue;
+	}
 </style>
