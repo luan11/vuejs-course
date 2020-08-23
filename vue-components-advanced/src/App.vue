@@ -5,11 +5,13 @@
     <!-- <Post :title="'Components'"/> -->
     <Post>
       <h2 slot="post-header">Components Vue</h2>
-      <template slot="post-content">
-        <p>Lorem ipsum dolor sit amet consectetur.</p>
-        <span>...</span>
-      </template>
+      
+      <p>Lorem ipsum dolor sit amet consectetur.</p>
+      <span>...</span>
+
       <small slot="post-footer">by Luan Novais</small>
+
+      <template slot="button">Detalhes</template>
     </Post>
     <!-- <Post :title="'Data by props'"/> -->
   </div>

@@ -4,10 +4,15 @@
 			<slot name="post-header"></slot>
 		</div>
 		<div class="post-content">
-			<slot name="post-content"></slot>
+			<slot></slot>
 		</div>
 		<div class="post-footer">
 			<slot name="post-footer"></slot>
+			<a href="#" class="link">
+				<slot name="button">
+					Ler mais
+				</slot>
+			</a>
 		</div>
 	</div>
 </template>
@@ -36,5 +41,9 @@
 
 	.post-footer {
 		font-style: italic;
+	}
+
+	.link {
+		float: right;
 	}
 </style>
