@@ -17,6 +17,16 @@
         <small>{{ myPost.author }}</small>
       </template>
     </PostsList>
+
+    <h2>Com v-slot</h2>
+    <PostsList
+      :posts="posts"
+      v-slot="{ myPost }"
+    >
+      <h2>{{ myPost.title }}</h2>
+      <p>{{ myPost.content }}</p>
+      <small>{{ myPost.author }}</small>
+    </PostsList>
   </div>
 </template>
 
