@@ -1,8 +1,20 @@
 <template>
   <div id="app" class="container">
-    <h1>Vue</h1>
+    <h1>Vue - Dynamic Components</h1>
 
-    <h2>Padrão</h2>
+    <button @click="selected = 'Home'">Home</button>
+    <button @click="selected = 'PostsList'">Posts</button>
+    <button @click="selected = 'About'">About</button>
+
+    <p>{{ selected }}</p>
+
+    <component 
+      :is="selected"
+      v-bind="currentProps"
+    >
+    </component>
+
+   <!--  <h2>Padrão</h2>
     <PostsList
       :posts="posts"
     />
@@ -26,19 +38,24 @@
       <h2>{{ myPost.title }}</h2>
       <p>{{ myPost.content }}</p>
       <small>{{ myPost.author }}</small>
-    </PostsList>
+    </PostsList> -->
   </div>
 </template>
 
 <script>
+import About from './components/About'
+import Home from './components/Home'
 import PostsList from './components/PostsList'
 
 export default {
   components: {
+    About,
+    Home,
     PostsList
   },
   data() {
     return {
+      selected: 'Home',
       posts: [
         {
           id: 1,
@@ -54,7 +71,12 @@ export default {
         }
       ]
     };
-  }
+  },
+  computed: {
+    currentProps() {
+      return this.selected === 'PostsList' ? { 'posts': this.posts } : {}
+    }
+  },
 }
 </script>
 
