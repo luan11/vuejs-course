@@ -11,10 +11,10 @@
     <PostsList
       :posts="posts"
     >
-      <template slot-scope="slotProps">
-        <h2>{{ slotProps.myPost.title }}</h2>
-        <p>{{ slotProps.myPost.content }}</p>
-        <small>{{ slotProps.myPost.author }}</small>
+      <template slot-scope="{ myPost }">
+        <h2>{{ myPost.title }}</h2>
+        <p>{{ myPost.content }}</p>
+        <small>{{ myPost.author }}</small>
       </template>
     </PostsList>
   </div>
