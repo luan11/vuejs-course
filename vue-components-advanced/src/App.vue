@@ -2,31 +2,47 @@
   <div id="app" class="container">
     <h1>Vue</h1>
 
-    <!-- <Post :title="'Components'"/> -->
-    <Post>
-      <h2 slot="post-header">Components Vue</h2>
-      
-      <p class="post-p">Lorem ipsum dolor sit amet consectetur.</p>
-      <span>...</span>
+    <h2>Padrão</h2>
+    <PostsList
+      :posts="posts"
+    />
 
-      <small slot="post-footer">by {{ author }}</small>
-
-      <template slot="button">Detalhes</template>
-    </Post>
-    <!-- <Post :title="'Data by props'"/> -->
+    <h2>Slots com escopo</h2>
+    <PostsList
+      :posts="posts"
+    >
+      <template slot-scope="slotProps">
+        <h2>{{ slotProps.myPost.title }}</h2>
+        <p>{{ slotProps.myPost.content }}</p>
+        <small>{{ slotProps.myPost.author }}</small>
+      </template>
+    </PostsList>
   </div>
 </template>
 
 <script>
-import Post from './components/Post'
+import PostsList from './components/PostsList'
 
 export default {
   components: {
-    Post
+    PostsList
   },
   data() {
     return {
-      author: 'Luan Novais'
+      posts: [
+        {
+          id: 1,
+          title: 'Post 1',
+          content: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facilis nobis, ipsum, quas accusantium et modi libero eum sequi quisquam in eligendi adipisci ullam eos ad suscipit iusto? Alias, iste voluptate.',
+          author: 'Luan Novais'
+        },
+        {
+          id: 2,
+          title: 'Post 2',
+          content: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facilis nobis, ipsum, quas accusantium et modi libero eum sequi quisquam in eligendi adipisci ullam eos ad suscipit iusto? Alias, iste voluptate.',
+          author: 'Luan Novais'
+        }
+      ]
     };
   }
 }

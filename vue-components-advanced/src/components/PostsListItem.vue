@@ -1,28 +1,29 @@
 <template>
 	<div class="post">
-		<div class="post-header">
-			<slot name="post-header"></slot>
-		</div>
-		<div class="post-content">
-			<slot></slot>
-		</div>
-		<div class="post-footer">
-			<slot name="post-footer"></slot>
-			<a href="#" class="link">
-				<slot name="button">
-					Ler mais
-				</slot>
-			</a>
-		</div>
+		<slot>
+			<div class="post-header">
+				<h2>{{ post.title }}</h2>
+			</div>
+			<div class="post-content">
+				<p>{{ post.content }}</p>
+			</div>
+			<div class="post-footer">
+				<small>{{ post.author }}</small>
+				<a href="#" class="link">Ler mais...</a>
+			</div>
+		</slot>
 	</div>
 </template>
 
 <script>
-/* export default {
+export default {
 	props: {
-		title: String
+		post: {
+			type: Object,
+			required: true
+		}
 	}
-} */
+}
 </script>
 
 <style scoped>
