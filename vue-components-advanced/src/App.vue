@@ -6,11 +6,12 @@
     <button @click="selected = 'PostsList'">Posts</button>
     <button @click="selected = 'About'">About</button>
     <button @click="selected = 'Async'">Async</button>
+    <button @click="selected = 'Contact'">Contact</button>
 
     <!-- include="" => Inclui o item= que deve se manter criado -->
     <!-- exclude="" => Exclui os itens que não devem se manter criados -->
     <!-- max="" => Manter um certo numero de instancias em cache -->
-    <keep-alive :include="['About']">
+    <keep-alive :max="2">
       <component 
         :is="selected"
         v-bind="currentProps"
@@ -51,6 +52,13 @@ import About from './components/About'
 import Home from './components/Home'
 import PostsList from './components/PostsList'
 
+const Contact = {
+  render: h => h({
+    name: 'ContactName',
+    template: '<h2>Anonymous Component</h2>'
+  })
+}
+
 export default {
   components: {
     Async: () => ({
@@ -69,6 +77,7 @@ export default {
       timeout: 3000 // Default: Infinity
     }),
     About,
+    Contact,
     Home,
     PostsList
   },

@@ -4,11 +4,14 @@
 
 		<p v-if="author">Author: {{ author }}</p>
 		<input type="text" v-model="author">
+
+		<!-- <AboutUs/> -->
 	</div>
 </template>
 
 <script>
 export default {
+	name: 'AboutUs',
 	data() {
 		return {
 			author: ''
