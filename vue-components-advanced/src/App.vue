@@ -10,7 +10,7 @@
     <!-- include="" => Inclui o item= que deve se manter criado -->
     <!-- exclude="" => Exclui os itens que não devem se manter criados -->
     <!-- max="" => Manter um certo numero de instancias em cache -->
-    <keep-alive :max="2">
+    <keep-alive :include="['About']">
       <component 
         :is="selected"
         v-bind="currentProps"
@@ -53,7 +53,21 @@ import PostsList from './components/PostsList'
 
 export default {
   components: {
-    Async: () => import('./components/Async.vue'),
+    Async: () => ({
+      component: new Promise(resolve => {
+        setTimeout(() => {
+          resolve(import('./components/Async.vue'))
+        }, 2000)
+      }),
+      loading: {
+        template: '<p>Loading...</p>'
+      },
+      error: {
+        template: '<p>Error on loading...</p>'
+      },
+      delay: 200,
+      timeout: 3000 // Default: Infinity
+    }),
     About,
     Home,
     PostsList
