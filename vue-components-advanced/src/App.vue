@@ -6,13 +6,13 @@
     <button @click="selected = 'PostsList'">Posts</button>
     <button @click="selected = 'About'">About</button>
 
-    <p>{{ selected }}</p>
-
-    <component 
-      :is="selected"
-      v-bind="currentProps"
-    >
-    </component>
+    <keep-alive>
+      <component 
+        :is="selected"
+        v-bind="currentProps"
+      >
+      </component>
+    </keep-alive>
 
    <!--  <h2>Padrão</h2>
     <PostsList
