@@ -6,7 +6,10 @@
     <button @click="selected = 'PostsList'">Posts</button>
     <button @click="selected = 'About'">About</button>
 
-    <keep-alive>
+    <!-- include="" => Inclui o item= que deve se manter criado -->
+    <!-- exclude="" => Exclui os itens que não devem se manter criados -->
+    <!-- max="" => Manter um certo numero de instancias em cache -->
+    <keep-alive :max="2">
       <component 
         :is="selected"
         v-bind="currentProps"
