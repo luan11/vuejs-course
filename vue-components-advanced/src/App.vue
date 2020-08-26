@@ -5,6 +5,7 @@
     <button @click="selected = 'Home'">Home</button>
     <button @click="selected = 'PostsList'">Posts</button>
     <button @click="selected = 'About'">About</button>
+    <button @click="selected = 'Async'">Async</button>
 
     <!-- include="" => Inclui o item= que deve se manter criado -->
     <!-- exclude="" => Exclui os itens que não devem se manter criados -->
@@ -52,6 +53,7 @@ import PostsList from './components/PostsList'
 
 export default {
   components: {
+    Async: () => import('./components/Async.vue'),
     About,
     Home,
     PostsList
