@@ -51,12 +51,22 @@
               <p>Gênero:</p>
 
               <div class="form-check form-check-inline">
-                <input type="radio" class="form-check-input" value="Masculino">
+                <input 
+                  type="radio" 
+                  class="form-check-input" 
+                  value="Masculino"
+                  v-model="dev.genre"
+                >
                 <label class="form-check-label">Masculino</label>
               </div>
 
               <div class="form-check form-check-inline">
-                <input type="radio" class="form-check-input" value="Feminino">
+                <input 
+                  type="radio" 
+                  class="form-check-input"  
+                  value="Feminino"
+                  v-model="dev.genre"
+                >
                 <label class="form-check-label">Feminino</label>
               </div>
 
@@ -74,22 +84,42 @@
               <p>Tecnologias:</p>
 
               <div class="form-check form-check-inline">
-                <input type="checkbox" class="form-check-input" value="JavaScript">
+                <input 
+                  type="checkbox" 
+                  class="form-check-input" 
+                  value="JavaScript"
+                  v-model="dev.tech"
+                >
                 <label class="form-check-label">JavaScript</label>
               </div>
 
-              <div class="form-check form-check-inline" value="Vue JS">
-                <input type="checkbox" class="form-check-input">
+              <div class="form-check form-check-inline">
+                <input 
+                  type="checkbox" 
+                  class="form-check-input"
+                  value="Vue JS"
+                  v-model="dev.tech"
+                >
                 <label class="form-check-label">Vue JS</label>
               </div>
 
               <div class="form-check form-check-inline">
-                <input type="checkbox" class="form-check-input" value="Vuex">
+                <input 
+                  type="checkbox" 
+                  class="form-check-input" 
+                  value="Vuex"
+                  v-model="dev.tech"
+                >
                 <label class="form-check-label">Vuex</label>
               </div>
 
               <div class="form-check form-check-inline">
-                <input type="checkbox" class="form-check-input" value="Vue Router">
+                <input 
+                  type="checkbox" 
+                  class="form-check-input" 
+                  value="Vue Router"
+                  v-model="dev.tech"
+                >
                 <label class="form-check-label">Vue Router</label>
               </div>
 
@@ -107,7 +137,13 @@
             <div class="form-group">
 
               <div class="form-check form-check-inline">
-                <input type="checkbox" class="form-check-input">
+                <input 
+                  type="checkbox" 
+                  class="form-check-input"
+                  v-model="dev.notifications"
+                  true-value="Sim"
+                  false-value="Não"
+                >
                 <label class="form-check-label">Receber notificações por email</label>
               </div>
 
@@ -133,15 +169,19 @@
               <li class="list-group-item"><strong>Nome:</strong> {{ dev.name }}</li>
               <li class="list-group-item"><strong>Email:</strong> {{ dev.email }}</li>
               <li class="list-group-item"><strong>Idade:</strong> {{ dev.age }}</li>
-              <li class="list-group-item"><strong>Gênero:</strong> </li>
+              <li class="list-group-item"><strong>Gênero:</strong> {{ dev.genre }}</li>
               <li class="list-group-item"><strong>Ocupação:</strong> </li>
-              <li class="list-group-item"><strong>Tecnologias:</strong> </li>
+              <li class="list-group-item"><strong>Tecnologias:</strong>
+                <ul>
+                  <li v-for="(tech, i) in dev.tech" :key="i">{{ tech }}</li>
+                </ul>
+              </li>
               <li class="list-group-item">
                 <strong>Biografia:</strong> 
                 <!-- <pre>{{ dev.about }}</pre> -->
                 <div style="white-space: pre">{{ dev.about }}</div>
               </li>
-              <li class="list-group-item"><strong>Receber notificações?</strong> </li>
+              <li class="list-group-item"><strong>Receber notificações?</strong> {{ dev.notifications }}</li>
             </ul>
 
             <div class="card-header">Model</div>
@@ -167,7 +207,10 @@ export default {
         name: 'Luan',
         email: 'oi@luandev.ml',
         age: 21,
-        about: '...'
+        about: '...',
+        genre: 'Masculino',
+        tech: [],
+        notifications: 'Não'     
       }
     }
   }
