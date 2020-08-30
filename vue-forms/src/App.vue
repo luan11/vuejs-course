@@ -14,7 +14,10 @@
 
           <h3>Preencha abaixo</h3>
 
-          <form>
+          <form 
+            @submit.prevent="send"
+            @reset.prevent="reset"  
+          >
 
             <div class="form-group">
               <label>Nome:</label>
@@ -159,8 +162,21 @@
 
             </div>
 
-            <button class="btn btn-secondary">Resetar</button>
-            <button class="btn btn-success">Enviar</button>
+            <button 
+              type="reset"
+              class="btn btn-secondary"
+            >Resetar</button>
+
+            <!-- <button 
+              type="button"
+              class="btn btn-success"
+              @click="send"
+            >Enviar</button> -->
+
+            <button 
+              type="submit"
+              class="btn btn-success"
+            >Enviar</button>
 
           </form>
 
@@ -213,7 +229,8 @@ export default {
   name: 'App',
   data() {
     return {
-      dev: {
+      dev: {},
+      default: {
         name: 'Luan',
         email: 'oi@luandev.ml',
         age: 21,
@@ -231,6 +248,19 @@ export default {
         'Dev full stack'
       ]
     }
+  },
+  methods: {
+    send() {
+      const submittedForm = Object.assign({}, this.dev);
+
+      console.log(submittedForm);     
+    },
+    reset() {
+      this.dev = Object.assign({}, this.default);
+    }
+  },
+  created() {
+    this.reset()
   }
 }
 </script>
