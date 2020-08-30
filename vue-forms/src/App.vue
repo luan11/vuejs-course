@@ -74,8 +74,18 @@
 
             <div class="form-group">
               <label>Ocupação:</label>
-              <select class="form-control" placeholder="Seu email">
-                <option>Selecione uma opção...</option>
+              <select 
+                class="form-control"
+                v-model="dev.occupation"
+              >
+                <option value="" disabled>Selecione uma opção...</option>
+                <option 
+                  v-for="(occupation, i) in occupations"
+                  :key="i"
+                  :value="occupation"
+                >
+                  {{ occupation }}
+                </option>
               </select>
             </div>  
 
@@ -170,7 +180,7 @@
               <li class="list-group-item"><strong>Email:</strong> {{ dev.email }}</li>
               <li class="list-group-item"><strong>Idade:</strong> {{ dev.age }}</li>
               <li class="list-group-item"><strong>Gênero:</strong> {{ dev.genre }}</li>
-              <li class="list-group-item"><strong>Ocupação:</strong> </li>
+              <li class="list-group-item"><strong>Ocupação:</strong> {{ dev.occupation }}</li>
               <li class="list-group-item"><strong>Tecnologias:</strong>
                 <ul>
                   <li v-for="(tech, i) in dev.tech" :key="i">{{ tech }}</li>
@@ -210,8 +220,16 @@ export default {
         about: '...',
         genre: 'Masculino',
         tech: [],
-        notifications: 'Não'     
-      }
+        notifications: 'Não',
+        occupation: ''
+      },
+      occupations: [
+        'Dev Front-end Web',
+        'Dev Front-end Mobile',
+        'Dev Front-end Web/Mobile',
+        'Dev Back-end',
+        'Dev full stack'
+      ]
     }
   }
 }
