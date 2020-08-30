@@ -14,19 +14,18 @@
 <script>
 export default {
 	inheritAttrs: false,
+	/* model: {
+		prop: 'value',
+		event: 'input'
+	}, */
 	props: {
 		label: String,
 		value: [Number, String],
 		inputClasses: [String, Object, Array]
 	},
-	data() {
-		return {
-			currentValue: this.value || this.$attrs.min	
-		}
-	},
 	computed: {
 		customLabel() {
-			return `${this.label} (R$ ${this.currentValue})`
+			return `${this.label} (R$ ${(this.value || this.$attrs.min).toLocaleString('pt-BR')})`
 		}
 	},
 	methods: {
@@ -34,8 +33,6 @@ export default {
 			const value = event.target.value;
 
 			this.$emit('input', value);
-
-			this.currentValue = value;
 		}
 	},
 	created() {
