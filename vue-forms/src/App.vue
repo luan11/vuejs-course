@@ -148,6 +148,17 @@
             </div>
 
             <div class="form-group">
+              <AppRange
+                :label="'Your price'"
+                v-model.number="dev.pay"
+                :min="1500"
+                :max="15000"
+                :step="500"
+                :inputClasses="'form-control-range'"
+              />
+            </div>
+
+            <div class="form-group">
 
               <div class="form-check form-check-inline">
                 <input 
@@ -208,6 +219,7 @@
                 <div style="white-space: pre">{{ dev.about }}</div>
               </li>
               <li class="list-group-item"><strong>Receber notificações?</strong> {{ dev.notifications }}</li>
+              <li class="list-group-item"><strong>Salário pretendido</strong> R$ {{ dev.pay.toLocaleString('pt-BR') }}</li>
             </ul>
 
             <div class="card-header">Model</div>
@@ -225,8 +237,13 @@
 </template>
 
 <script>
+import AppRange from './components/Range'
+
 export default {
   name: 'App',
+  components: {
+    AppRange
+  },
   data() {
     return {
       dev: {},
@@ -238,7 +255,8 @@ export default {
         genre: 'Masculino',
         tech: [],
         notifications: 'Não',
-        occupation: ''
+        occupation: '',
+        pay: 1500      
       },
       occupations: [
         'Dev Front-end Web',
