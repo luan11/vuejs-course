@@ -12,7 +12,7 @@
         @click="show = !show"
       >Toggle</button>
       
-      <transition name="zoom">
+      <transition name="slide" type="animation">
         <div class="alert alert-primary" v-if="show">Animations in Vue</div>
       </transition>
     </div>
@@ -56,5 +56,41 @@ export default {
 
   .zoom-enter-to, .zoom-leave {
     transform: scale(1);
+  }
+
+  .slide-enter {
+    opacity: 0;
+  }
+
+  .slide-enter-active {
+    animation: slide 0.7s;
+    transition: opacity 0.7s;
+  }
+
+  .slide-enter-to {
+    opacity: 1;
+  }
+
+  .slide-leave {
+    opacity: 1;
+  }
+
+  .slide-leave-active {
+    animation: slide 0.7s reverse;
+    transition: opacity 2s;
+  }
+
+  .slide-leave-to {
+    opacity: 0;
+  }
+
+  @keyframes slide {
+    0% {
+      transform: translateX(-100px);
+    }
+
+    100% {
+      transform: translateX(0);
+    }
   }
 </style>
