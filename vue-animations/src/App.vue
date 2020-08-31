@@ -12,7 +12,7 @@
         @click="show = !show"
       >Toggle</button>
       
-      <transition name="fade">
+      <transition name="zoom">
         <div class="alert alert-primary" v-if="show">Animations in Vue</div>
       </transition>
     </div>
@@ -45,4 +45,16 @@ export default {
   /* .fade-enter-to, .fade-leave { 
     opacity: 1;
   } */
+
+  .zoom-enter, .zoom-leave-to {
+    transform: scale(0);
+  }
+
+  .zoom-enter-active, .zoom-leave-active {
+    transition: transform 0.5s;
+  }
+
+  .zoom-enter-to, .zoom-leave {
+    transform: scale(1);
+  }
 </style>
