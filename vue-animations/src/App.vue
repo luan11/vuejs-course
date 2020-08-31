@@ -12,7 +12,7 @@
         @click="show = !show"
       >Toggle</button>
       
-      <transition>
+      <transition name="fade">
         <div class="alert alert-primary" v-if="show">Animations in Vue</div>
       </transition>
     </div>
@@ -31,27 +31,18 @@ export default {
 </script>
 
 <style scoped>
-  .v-enter { /* Estado inicial */
+  /* Estado inicial */
+  .fade-enter, .fade-leave-to { 
     opacity: 0;
   }
 
-  .v-enter-active { /* Como a animação irá acontecer */
+  /* Como a animação irá acontecer */
+  .fade-enter-active, .fade-leave-active { 
     transition: opacity 1s;
   }
 
-  .v-enter-to { /* Estado final */
+  /* Estado final */
+  /* .fade-enter-to, .fade-leave { 
     opacity: 1;
-  }
-
-  .v-leave {
-    opacity: 1;
-  }
-
-  .v-leave-active {
-    transition: opacity 1s;
-  }
-
-  .v-leave-to {
-    opacity: 0;
-  }
+  } */
 </style>
