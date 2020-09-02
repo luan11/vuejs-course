@@ -12,7 +12,19 @@
         @click="show = !show"
       >Toggle</button>
       
-      <transition name="slide" type="animation">
+      <!-- <transition name="slide" type="animation" :duration="{enter: 1200, leave: 500}">
+        <div class="alert alert-primary" v-if="show">Animations in Vue</div>
+      </transition> -->
+
+      <!-- Customizando classes -->
+      <transition
+        enter-class=""
+        enter-active-class="animate__animated animate__bounce"
+        enter-to-class=""
+        leave-class=""
+        leave-active-class="animate__animated animate__bounceOutDown"
+        leave-to-class=""
+      >
         <div class="alert alert-primary" v-if="show">Animations in Vue</div>
       </transition>
     </div>
@@ -29,6 +41,12 @@ export default {
   }
 }
 </script>
+
+<style>
+  body {
+    overflow: hidden;
+  }
+</style>
 
 <style scoped>
   /* Estado inicial */
@@ -63,7 +81,7 @@ export default {
   }
 
   .slide-enter-active {
-    animation: slide 0.7s;
+    animation: slide 0.7s ease-in-out;
     transition: opacity 0.7s;
   }
 
