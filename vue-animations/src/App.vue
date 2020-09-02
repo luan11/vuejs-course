@@ -17,13 +17,28 @@
       </transition> -->
 
       <!-- Customizando classes -->
-      <transition
+      <!-- <transition
         enter-class=""
         enter-active-class="animate__animated animate__bounce"
         enter-to-class=""
         leave-class=""
         leave-active-class="animate__animated animate__bounceOutDown"
         leave-to-class=""
+      >
+        <div class="alert alert-primary" v-if="show">Animations in Vue</div>
+      </transition> -->
+
+      <!-- Gatilhos JavaScript -->
+      <transition
+        @before-enter="beforeEnter"
+        @enter="enter"
+        @after-enter="afterEnter"
+        @enter-cancelled="enterCancelled"
+
+        @before-leave="beforeLeave"
+        @leave="leave"
+        @after-leave="afterLeave"
+        @leave-cancelled="leaveCancelled"
       >
         <div class="alert alert-primary" v-if="show">Animations in Vue</div>
       </transition>
@@ -38,7 +53,35 @@ export default {
     return {
       show: true
     }
-  }
+  },
+  methods: {
+    beforeEnter(el) {
+      console.log('Before enter', el)
+    },
+    enter(el, done) {
+      console.log('Enter', el);
+      done()
+    },
+    afterEnter(el) {
+      console.log('After enter', el)
+    },
+    enterCancelled(el) {
+      console.log('Enter cancelled', el)
+    },
+    beforeLeave(el) {
+      console.log('Before enter', el)
+    },
+    leave(el, done) {
+      console.log('Enter', el);
+      done()
+    },
+    afterLeave(el) {
+      console.log('After enter', el)
+    },
+    leaveCancelled(el) {
+      console.log('Enter cancelled', el)
+    }
+  },
 }
 </script>
 
