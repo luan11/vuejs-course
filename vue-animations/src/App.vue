@@ -39,6 +39,8 @@
         @leave="leave"
         @after-leave="afterLeave"
         @leave-cancelled="leaveCancelled"
+
+        :css="false"
       >
         <div class="alert alert-primary" v-if="show">Animations in Vue</div>
       </transition>
