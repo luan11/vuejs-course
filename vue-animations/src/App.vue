@@ -59,10 +59,23 @@ export default {
   methods: {
     beforeEnter(el) {
       console.log('Before enter', el)
+      el.style.opacity = 0;
     },
     enter(el, done) {
       console.log('Enter', el);
-      done()
+
+      let count = 0;
+
+      const interval = setInterval(() => {
+        el.style.opacity = +el.style.opacity + 0.1;
+        count++;
+
+        if(count > 10) {
+          clearInterval(interval);
+
+          done()
+        }
+      }, 150);
     },
     afterEnter(el) {
       console.log('After enter', el)
@@ -72,10 +85,26 @@ export default {
     },
     beforeLeave(el) {
       console.log('Before enter', el)
+
+      el.style.transition = 'width 0.1s';
+      el.style.overflow = 'hidden';
+      el.style.whiteSpace = 'nowrap';
     },
     leave(el, done) {
       console.log('Enter', el);
-      done()
+
+      let count = 0;
+      const size = el.offsetWidth,
+        interval = setInterval(() => {
+          el.style.width = (size * (1 - (count / 10))) + 'px';
+          count++;
+
+          if(count > 10) {
+            clearInterval(interval);
+
+            done()
+          }
+        }, 150);      
     },
     afterLeave(el) {
       console.log('After enter', el)
