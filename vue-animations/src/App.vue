@@ -29,7 +29,7 @@
       </transition> -->
 
       <!-- Gatilhos JavaScript -->
-      <transition
+      <!-- <transition
         @before-enter="beforeEnter"
         @enter="enter"
         @after-enter="afterEnter"
@@ -40,7 +40,24 @@
         @after-leave="afterLeave"
         @leave-cancelled="leaveCancelled"
 
-        :css="false"
+        appear
+      >
+        <div class="alert alert-primary" v-if="show">Animations in Vue</div>
+      </transition> -->
+
+      <transition
+        appear
+        appear-class=""
+        appear-active-class="animate__animated animate__flipInY"
+        appear-to-class=""
+
+        enter-class=""
+        enter-active-class="animate__animated animate__bounceInLeft"
+        enter-to-class=""
+
+        leave-class=""
+        leave-active-class="animate__animated animate__bounceOutDown"
+        leave-to-class=""
       >
         <div class="alert alert-primary" v-if="show">Animations in Vue</div>
       </transition>
