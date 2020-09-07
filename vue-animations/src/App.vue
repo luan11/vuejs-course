@@ -70,8 +70,12 @@
         <div class="alert alert-primary" v-if="show">Animations in Vue</div>
       </transition> -->
 
-      <transition :name="selectedAnimation">
-        <div class="alert alert-primary" v-if="show">Animations in Vue</div>
+      <transition 
+        :name="selectedAnimation"
+        mode="out-in"
+      > <!-- mode="in-out|out-in" -->
+        <div class="alert alert-info" v-if="show" key="info">Animations in Vue</div>
+        <div class="alert alert-success" v-else key="success">Success</div>
       </transition>
     </div>
   </div>
@@ -199,7 +203,7 @@ export default {
 
   .slide-leave-active {
     animation: slide 0.7s reverse;
-    transition: opacity 2s;
+    transition: opacity 0.7s;
   }
 
   .slide-leave-to {
