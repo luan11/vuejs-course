@@ -21,12 +21,20 @@
         </select>
       </div>
 
-      <div class="form-group">
+      <!-- <div class="form-group">
         <label class="form-label">Alerts:</label>
         <select class="form-control" v-model="currentAlert">
           <option value="info">Info</option>
           <option value="warning">Warning</option>
           <option value="success">Success</option>
+        </select>
+      </div> -->
+
+      <div class="form-group">
+        <label class="form-label">Components:</label>
+        <select class="form-control" v-model="selectedComponent">
+          <option value="AppAbout">About</option>
+          <option value="AppHome">Home</option>
         </select>
       </div>
       
@@ -84,7 +92,8 @@
         :name="selectedAnimation"
         mode="out-in"
       > <!-- mode="in-out|out-in" -->
-        <div :class="alertClasses" :key="currentAlert">Animations in Vue</div>
+        <!-- <div :class="alertClasses" :key="currentAlert">Animations in Vue</div> -->
+        <component :is="selectedComponent"></component>
       </transition>
     </div>
   </div>
@@ -97,7 +106,8 @@ export default {
     return {
       show: true,
       selectedAnimation: 'fade',
-      currentAlert: 'info'
+      currentAlert: 'info',
+      selectedComponent: 'AppHome'
     }
   },
   methods: {
@@ -164,6 +174,10 @@ export default {
         [`alert-${this.currentAlert}`]: true
       }
     }
+  },
+  components: {
+    AppAbout: () => import('./components/About'),
+    AppHome: () => import('./components/Home')
   }
 }
 </script>
