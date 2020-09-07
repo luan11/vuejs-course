@@ -11,6 +11,14 @@
       <button class="btn btn-primary mb-3"
         @click="show = !show"
       >Toggle</button>
+
+      <div class="form-group">
+        <select class="form-control" v-model="selectedAnimation">
+          <option value="fade">Fade</option>
+          <option value="zoom">Zoom</option>
+          <option value="slide">Slide</option>
+        </select>
+      </div>
       
       <!-- <transition name="slide" type="animation" :duration="{enter: 1200, leave: 500}">
         <div class="alert alert-primary" v-if="show">Animations in Vue</div>
@@ -45,7 +53,7 @@
         <div class="alert alert-primary" v-if="show">Animations in Vue</div>
       </transition> -->
 
-      <transition
+      <!-- <transition
         appear
         appear-class=""
         appear-active-class="animate__animated animate__flipInY"
@@ -60,6 +68,10 @@
         leave-to-class=""
       >
         <div class="alert alert-primary" v-if="show">Animations in Vue</div>
+      </transition> -->
+
+      <transition :name="selectedAnimation">
+        <div class="alert alert-primary" v-if="show">Animations in Vue</div>
       </transition>
     </div>
   </div>
@@ -70,7 +82,8 @@ export default {
   name: 'App',
   data() {
     return {
-      show: true
+      show: true,
+      selectedAnimation: 'fade'
     }
   },
   methods: {
