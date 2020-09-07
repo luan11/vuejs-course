@@ -8,15 +8,25 @@
     </div>
 
     <div class="container">
-      <button class="btn btn-primary mb-3"
+      <!-- <button class="btn btn-primary mb-3"
         @click="show = !show"
-      >Toggle</button>
+      >Toggle</button> -->
 
       <div class="form-group">
+        <label class="form-label">Animations:</label>
         <select class="form-control" v-model="selectedAnimation">
           <option value="fade">Fade</option>
           <option value="zoom">Zoom</option>
           <option value="slide">Slide</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Alerts:</label>
+        <select class="form-control" v-model="currentAlert">
+          <option value="info">Info</option>
+          <option value="warning">Warning</option>
+          <option value="success">Success</option>
         </select>
       </div>
       
@@ -74,8 +84,7 @@
         :name="selectedAnimation"
         mode="out-in"
       > <!-- mode="in-out|out-in" -->
-        <div class="alert alert-info" v-if="show" key="info">Animations in Vue</div>
-        <div class="alert alert-success" v-else key="success">Success</div>
+        <div :class="alertClasses" :key="currentAlert">Animations in Vue</div>
       </transition>
     </div>
   </div>
@@ -87,7 +96,8 @@ export default {
   data() {
     return {
       show: true,
-      selectedAnimation: 'fade'
+      selectedAnimation: 'fade',
+      currentAlert: 'info'
     }
   },
   methods: {
@@ -147,6 +157,14 @@ export default {
       console.log('Enter cancelled', el)
     }
   },
+  computed: {
+    alertClasses() {
+      return {
+        'alert': true,
+        [`alert-${this.currentAlert}`]: true
+      }
+    }
+  }
 }
 </script>
 
