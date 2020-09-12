@@ -12,14 +12,14 @@
         @click="show = !show"
       >Toggle</button> -->
 
-      <div class="form-group">
+      <!-- <div class="form-group">
         <label class="form-label">Animations:</label>
         <select class="form-control" v-model="selectedAnimation">
           <option value="fade">Fade</option>
           <option value="zoom">Zoom</option>
           <option value="slide">Slide</option>
         </select>
-      </div>
+      </div> -->
 
       <!-- <div class="form-group">
         <label class="form-label">Alerts:</label>
@@ -30,13 +30,13 @@
         </select>
       </div> -->
 
-      <div class="form-group">
+      <!-- <div class="form-group">
         <label class="form-label">Components:</label>
         <select class="form-control" v-model="selectedComponent">
           <option value="AppAbout">About</option>
           <option value="AppHome">Home</option>
         </select>
-      </div>
+      </div> -->
       
       <!-- <transition name="slide" type="animation" :duration="{enter: 1200, leave: 500}">
         <div class="alert alert-primary" v-if="show">Animations in Vue</div>
@@ -88,19 +88,42 @@
         <div class="alert alert-primary" v-if="show">Animations in Vue</div>
       </transition> -->
 
-      <transition 
+      <!-- <transition 
         :name="selectedAnimation"
         mode="out-in"
-      > <!-- mode="in-out|out-in" -->
+      > --> <!-- mode="in-out|out-in" -->
         <!-- <div :class="alertClasses" :key="currentAlert">Animations in Vue</div> -->
-        <component :is="selectedComponent"></component>
-      </transition>
+        <!-- <component :is="selectedComponent"></component>
+      </transition> -->
+
+      <h3 class="font-weight-light">Technologies</h3>
+
+      <div class="form-group">
+        <input 
+          type="text" 
+          class="form-control"
+          placeholder="Press enter to add new item"
+          @keyup.enter="add"
+          ref="input"
+        >
+      </div>
+
+      <transition-group tag="ul" class="list-group">
+        <li class="list-group-item"
+          v-for="(technology, index) in technologies" :key="technology"
+        >
+          <span>{{ technology }}</span>
+          <button class="btn btn-danger btn-sm float-right"
+            @click="remove(index)"
+          >&times;</button>
+        </li>
+      </transition-group>
     </div>
   </div>
 </template>
 
 <script>
-export default {
+/* export default {
   name: 'App',
   data() {
     return {
@@ -179,32 +202,62 @@ export default {
     AppAbout: () => import('./components/About'),
     AppHome: () => import('./components/Home')
   }
+} */
+
+export default {
+  name: 'App',
+  data() {
+    return {
+      technologies: [
+        'JavaScript',
+        'Vue JS',
+        'Vuex',
+        'Vue Router'
+      ]
+    };
+  },
+  methods: {
+    add(event) {
+      const newItem = event.target.value;
+
+      if(newItem) {
+        const index = Math.floor(Math.random() * this.technologies.length);
+
+        this.technologies.splice(index, 0, newItem);
+
+        this.$refs.input.value = '';
+      }
+    },
+    remove(index) {
+      this.technologies.splice(index, 1);
+    }
+  },
 }
 </script>
 
 <style>
-  body {
+  /* body {
     overflow: hidden;
-  }
+  } */
 </style>
 
 <style scoped>
   /* Estado inicial */
-  .fade-enter, .fade-leave-to { 
+  /* .fade-enter, .fade-leave-to { 
     opacity: 0;
-  }
+  } */
 
   /* Como a animação irá acontecer */
-  .fade-enter-active, .fade-leave-active { 
+  /* .fade-enter-active, .fade-leave-active { 
     transition: opacity 1s;
-  }
+  } */
 
   /* Estado final */
   /* .fade-enter-to, .fade-leave { 
     opacity: 1;
   } */
 
-  .zoom-enter, .zoom-leave-to {
+  /* .zoom-enter, .zoom-leave-to {
     transform: scale(0);
   }
 
@@ -250,5 +303,5 @@ export default {
     100% {
       transform: translateX(0);
     }
-  }
+  } */
 </style>
