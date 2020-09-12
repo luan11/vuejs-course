@@ -108,7 +108,7 @@
         >
       </div>
 
-      <transition-group tag="ul" class="list-group">
+      <transition-group tag="ul" class="list-group" name="list">
         <li class="list-group-item"
           v-for="(technology, index) in technologies" :key="technology"
         >
@@ -304,4 +304,18 @@ export default {
       transform: translateX(0);
     }
   } */
+
+  .list-enter, .list-leave-to {
+    opacity: 0;
+    transform: translateX(-70px);
+  }
+
+  .list-enter-active, .list-leave-active, .list-move {
+    transition: all 0.5s;
+  }
+
+  .list-leave-active {
+    position: absolute;
+    width: calc(100% - 100px);
+  }
 </style>
