@@ -127,6 +127,8 @@
           >&times;</button>
         </li>
       </transition-group>
+
+      <AnimateNumbers/>
     </div>
   </div>
 </template>
@@ -226,6 +228,9 @@ export default {
         'Vue Router'
       ]
     };
+  },
+  components: {
+    AnimateNumbers: () => import('./components/AnimateNumbers')
   },
   methods: {
     add(event) {
