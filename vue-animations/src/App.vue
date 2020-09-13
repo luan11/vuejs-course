@@ -98,14 +98,23 @@
 
       <h3 class="font-weight-light">Technologies</h3>
 
-      <div class="form-group">
-        <input 
-          type="text" 
-          class="form-control"
-          placeholder="Press enter to add new item"
-          @keyup.enter="add"
-          ref="input"
-        >
+      <div class="row">
+        <div class="col-sm-2">
+          <button class="btn btn-info"
+            @click="shuffleTechnologies"
+          >Shuffle</button>
+        </div>
+        <div class="col-sm-10">
+           <div class="form-group">
+            <input 
+              type="text" 
+              class="form-control"
+              placeholder="Press enter to add new item"
+              @keyup.enter="add"
+              ref="input"
+            >
+          </div>
+        </div>
       </div>
 
       <transition-group tag="ul" class="list-group" name="list">
@@ -204,6 +213,8 @@
   }
 } */
 
+import { shuffle } from 'lodash';
+
 export default {
   name: 'App',
   data() {
@@ -230,6 +241,9 @@ export default {
     },
     remove(index) {
       this.technologies.splice(index, 1);
+    },
+    shuffleTechnologies() {
+      this.technologies = shuffle(this.technologies);
     }
   },
 }
