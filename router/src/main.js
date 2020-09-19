@@ -1,26 +1,8 @@
 import Vue from 'vue'
-import VueRouter from 'vue-router'
 import App from './App.vue'
-import Contacts from './views/contacts/Contacts.vue'
-import Home from './views/Home.vue'
+import router from './router'
 
 Vue.config.productionTip = false
-
-Vue.use(VueRouter)
-
-const router = new VueRouter({
-  mode: 'history',
-  routes: [
-    {
-      path: '/contacts',
-      component: Contacts
-    },
-    {
-      path: '/',
-      component: Home
-    }
-  ]
-});
 
 new Vue({
   router,
