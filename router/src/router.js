@@ -13,12 +13,18 @@ export default new VueRouter({
   routes: [
     {
       path: '/contacts',
-      component: Contacts
+      component: Contacts,
+      children: [
+        {
+          path: ':id',
+          component: ContactDetails
+        }
+      ]
     },
-    {
+    /* {
       path: '/contacts/:id',
       component: ContactDetails
-    },
+    }, */
     {
       path: '/',
       component: Home

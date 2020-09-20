@@ -9,10 +9,15 @@ export default {
 			id: this.$route.params.id
 		}
 	},
-	watch: {
+	/* watch: {
 		'$route'(to) {
 			this.id = to.params.id
 		}
+	}, */
+	beforeRouteUpdate(to, from, next) {
+		this.id = to.params.id
+
+		next()
 	},
 	created() {
 		console.log(this.$route.params);
