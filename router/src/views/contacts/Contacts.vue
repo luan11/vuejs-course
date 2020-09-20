@@ -1,27 +1,28 @@
 <template>
-	<div>
-		<h3 class="font-weight-light">Contacts</h3>
-
-		<button class="btn btn-secondary my-4" @click="goback">Go back</button>
-	</div>
+	<ContactsList/>
 </template>
 
 <script>
+import ContactsList from './../../components/contacts/ContactsList'
+
 export default {
-	methods: {
+	components: {
+		ContactsList
+	}
+	/* methods: {
 		goback() {
-			/* this.$router.push({
+			this.$router.push({
 				path: '/'
-			}) */
+			})
 
-			// this.$router.replace('/');
+			this.$router.replace('/');
 
-			// this.$router.go(-1);
+			this.$router.go(-1);
 
-			// this.$router.forward() // Avança 1 registro no histórico de navegação
+			this.$router.forward() // Avança 1 registro no histórico de navegação
 
 			this.$router.back() // Retorna 1 registro no histórico de navegação
 		}
-	}
+	} */
 }
 </script>
