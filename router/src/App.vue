@@ -21,7 +21,7 @@
         Contacts
       </router-link>
 
-      <router-link 
+     <!--  <router-link 
         :to="{ path: '/contacts/1' }" 
         class="btn btn-info mb-4 mr-2"
       >
@@ -33,7 +33,7 @@
         class="btn btn-info mb-4 mr-2"
       >
         Contact 2
-      </router-link>
+      </router-link> -->
 
       <router-view></router-view>
     </div>

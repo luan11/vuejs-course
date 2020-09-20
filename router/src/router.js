@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 
 import Contacts from './views/contacts/Contacts.vue'
 import ContactDetails from './views/contacts/ContactDetails.vue'
+import ContactsHome from './views/contacts/ContactsHome.vue'
 import Home from './views/Home.vue'
 
 Vue.use(VueRouter)
@@ -16,8 +17,13 @@ export default new VueRouter({
       component: Contacts,
       children: [
         {
-          path: ':id',
+          name: 'contact',
+          path: 'details/:id',
           component: ContactDetails
+        },
+        {
+          path: '',
+          component: ContactsHome
         }
       ]
     },
