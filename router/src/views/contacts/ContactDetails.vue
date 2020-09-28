@@ -1,5 +1,19 @@
 <template>
-	<h3 class="font-weight-light">Details about the contact ID {{ id }}</h3>
+	<div>
+		<h3 class="font-weight-light">Details about the contact ID {{ id }}</h3>
+
+		<router-link 
+			class="btn btn-primary"
+			:to="{
+				name: 'contact-edit',
+				params: {
+					id: id
+				}
+			}"
+		>
+			Edit
+		</router-link>
+	</div>
 </template>
 
 <script>
