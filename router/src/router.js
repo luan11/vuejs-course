@@ -35,6 +35,7 @@ export default new VueRouter({
           }
         },
         {
+          name: 'contacts',        
           path: '',
           component: ContactsHome
         }
@@ -45,8 +46,20 @@ export default new VueRouter({
       component: ContactDetails
     }, */
     {
-      path: '/',
+      path: '/home',
       component: Home
+    },
+    /* {
+      path: '/',
+      redirect: '/contacts'
+    }, */
+    {
+      path: '/',
+      redirect: () => {
+        return {
+          name: 'contacts'
+        };
+      }
     }
   ]
 });
