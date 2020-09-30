@@ -18,6 +18,10 @@ export default new VueRouter({
       component: Contacts,
       children: [
         {
+          path: 'details/test',
+          component: ContactEdit
+        },
+        {
           name: 'contact',
           path: 'details/:id',
           component: ContactDetails
