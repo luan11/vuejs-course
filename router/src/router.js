@@ -16,6 +16,7 @@ export default new VueRouter({
     {
       path: '/contacts',
       component: Contacts,
+      alias: '/my-contacts' /* ['/my-contacts', '/contacts-list'] */,
       children: [
         {
           path: 'details/test',
@@ -29,6 +30,7 @@ export default new VueRouter({
         {
           name: 'contact-edit',
           path: 'edit/:id',
+          alias: 'alter/:id',
           components: {
             default: ContactEdit,
             'contact-details': ContactDetails
