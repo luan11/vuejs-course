@@ -6,6 +6,8 @@ import ContactDetails from './views/contacts/ContactDetails.vue'
 import ContactsHome from './views/contacts/ContactsHome.vue'
 import ContactEdit from './views/contacts/ContactEdit.vue'
 import Home from './views/Home.vue'
+import Error404 from './views/Error404.vue'
+import Error404Contacts from './views/contacts/Error404Contacts.vue'
 
 Vue.use(VueRouter)
 
@@ -40,7 +42,11 @@ export default new VueRouter({
           name: 'contacts',        
           path: '',
           component: ContactsHome
-        }
+        },
+        {
+          path: '*',
+          component: Error404Contacts
+        },
       ]
     },
     /* {
@@ -57,11 +63,15 @@ export default new VueRouter({
     }, */
     {
       path: '/',
-      redirect: () => {
+      redirect: (/* to */) => {
         return {
           name: 'contacts'
         };
       }
+    },
+    {
+      path: '*',
+      component: Error404
     }
   ]
 });
