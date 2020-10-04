@@ -2,10 +2,19 @@
 	<div>
 		<h3 class="font-weight-light">Contacts</h3>
 
-		<ul class="list-group" v-if="contacts.length > 0">
+		<div class="form-group">
+			<input type="search" class="form-control" placeholder="Search contacts"
+				@keyup.enter="doSearch"
+				:value="$route.query.kw"
+			>
+		</div>
+
+		<hr>
+
+		<ul class="list-group" v-if="filteredContacts.length > 0">
 			<ContactsListItem
 				class="list-group-item"
-				v-for="contact in contacts"
+				v-for="contact in filteredContacts"
 				:key="contact.id"
 				:contact="contact"
 			/>
@@ -29,23 +38,38 @@ export default {
 			contacts: [
 				{
 					id: 1,
-					name: 'Luan Novais',
+					name: 'Pedro Paulo',
 					email: 'oi@luandev.ml'
 				},
 				{
 					id: 2,
-					name: 'Luan B',
+					name: 'Leonardo Santos',
 					email: 'oi@luandev.ml'
 				},
 				{
 					id: 3,
-					name: 'Luan C',
+					name: 'Luan Novais',
 					email: 'oi@luandev.ml'
 				}
 			]
 		}
 	},
+	computed: {
+		filteredContacts() {
+			const search = this.$route.query.kw;
+
+			return !search ? this.contacts : this.contacts.filter(c => c.name.toLowerCase().includes(search.toLowerCase()));
+		}
+	},
 	methods: {
+		doSearch(event) {
+			this.$router.push({
+				path: 'contacts',
+				query: {
+					kw: event.target.value
+				}
+			});
+		},
 		goback() {
 			this.$router.back()
 		}
