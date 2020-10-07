@@ -27,7 +27,8 @@ export default new VueRouter({
         {
           name: 'contact',
           path: 'details/:id',
-          component: ContactDetails
+          component: ContactDetails,
+          props: true
         },
         {
           name: 'contact-edit',
@@ -36,6 +37,10 @@ export default new VueRouter({
           components: {
             default: ContactEdit,
             'contact-details': ContactDetails
+          },
+          props: {
+            default: true,
+            'contact-details': true
           }
         },
         {
