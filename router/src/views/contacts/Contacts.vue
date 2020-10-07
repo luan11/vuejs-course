@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<ContactsList/>
+		<ContactsList :kw="kw"/>
 		<router-view></router-view>
 		<router-view
 			name="contact-details"
@@ -14,7 +14,8 @@ import ContactsList from './../../components/contacts/ContactsList'
 export default {
 	components: {
 		ContactsList
-	}
+	},
+	props: ['kw']
 	/* methods: {
 		goback() {
 			this.$router.push({

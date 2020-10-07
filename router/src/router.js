@@ -19,6 +19,11 @@ export default new VueRouter({
       path: '/contacts',
       component: Contacts,
       alias: '/my-contacts' /* ['/my-contacts', '/contacts-list'] */,
+      props: (route) => {
+        const kw = route.query.kw;
+
+        return kw ? { kw } : {};
+      },
       children: [
         {
           path: 'details/test',

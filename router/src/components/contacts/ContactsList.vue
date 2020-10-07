@@ -5,7 +5,7 @@
 		<div class="form-group">
 			<input type="search" class="form-control" placeholder="Search contacts"
 				@keyup.enter="doSearch"
-				:value="$route.query.kw"
+				:value="kw"
 			>
 		</div>
 
@@ -33,6 +33,7 @@ export default {
 	components: {
 		ContactsListItem
 	},
+	props: ['kw'],
 	data() {
 		return {
 			contacts: [
@@ -56,7 +57,7 @@ export default {
 	},
 	computed: {
 		filteredContacts() {
-			const search = this.$route.query.kw;
+			const search = this.kw;
 
 			return !search ? this.contacts : this.contacts.filter(c => c.name.toLowerCase().includes(search.toLowerCase()));
 		}
