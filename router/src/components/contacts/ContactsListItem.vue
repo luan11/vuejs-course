@@ -4,10 +4,7 @@
 		<!-- O MAIS CORRETO SEMPRE É TRABALHAR COM ROUTER LINKS -->
 		<router-link 
 			:to="{
-				name: 'contact',
-				params: {
-					id: contact.id
-				}
+				path: `/contacts/details/${contact.id}`,
 			}"
 			class="btn btn-info btn-sm float-right"
 		>

@@ -20,7 +20,7 @@
 export default {
 	props: {
 		id: {
-			type: [String, Number],
+			type: Number,
 			required: true
 		}
 	},

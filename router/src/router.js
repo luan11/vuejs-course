@@ -33,7 +33,9 @@ export default new VueRouter({
           name: 'contact',
           path: 'details/:id',
           component: ContactDetails,
-          props: true
+          props: route => ({
+            id: parseInt(route.params.id)
+          })
         },
         {
           name: 'contact-edit',
