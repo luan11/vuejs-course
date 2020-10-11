@@ -18,6 +18,9 @@ export default {
 			type: [String, Number],
 			required: true
 		}
+	},
+	created() {
+		console.log(this.$route.params);
 	}
 }
 </script>

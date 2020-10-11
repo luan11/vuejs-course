@@ -11,6 +11,10 @@ import Error404Contacts from './views/contacts/Error404Contacts.vue'
 
 Vue.use(VueRouter)
 
+const parseIdParam = route => ({
+  id: parseInt(route.params.id)
+});
+
 export default new VueRouter({
   mode: 'history',
   linkActiveClass: 'active',
@@ -31,23 +35,23 @@ export default new VueRouter({
         },
         {
           name: 'contact',
-          path: 'details/:id',
+          path: 'details/:id(\\d+)',
           component: ContactDetails,
-          props: route => ({
-            id: parseInt(route.params.id)
-          })
+          props: parseIdParam
         },
         {
           name: 'contact-edit',
-          path: 'edit/:id',
-          alias: 'alter/:id',
+          // path: 'edit/:id(\\d+)/:optional?', // optional param
+          // path: 'edit/:id(\\d+)/:zeroOrMore*', // zero or more optional params
+          path: 'edit/:id(\\d+)/:oneOrMore+', // one or more optional params
+          alias: 'alter/:id(\\d+)',
           components: {
             default: ContactEdit,
             'contact-details': ContactDetails
           },
           props: {
-            default: true,
-            'contact-details': true
+            default: parseIdParam,
+            'contact-details': parseIdParam
           }
         },
         {
