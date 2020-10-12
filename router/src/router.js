@@ -49,12 +49,13 @@ const router = new VueRouter({
           beforeEnter(to, from, next) {
             console.log('beforeEnter');
 
-            if(to.query.authenticated === 'true') {
-              next();
-              return;
+            /* if(to.query.authenticated === 'true') {
+              return next();
             }
 
-            next('/contacts');
+            next('/contacts'); */
+
+            next();
           },
           components: {
             default: ContactEdit,

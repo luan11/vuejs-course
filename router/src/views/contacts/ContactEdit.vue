@@ -19,8 +19,19 @@ export default {
 			required: true
 		}
 	},
-	created() {
-		console.log(this.$route.params);
+	data() {
+		return {
+			course: 'VueJS'
+		}
+	},
+	beforeRouteEnter(to, from, next) {
+		if(to.query.authenticated === 'true') {
+			return next(vm => {
+				console.log('Course:', vm.course);
+			});
+		}
+
+		next('/contacts');
 	}
 }
 </script>
