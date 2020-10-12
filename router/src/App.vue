@@ -15,7 +15,7 @@
       </router-link>
       
       <router-link 
-        :to="{ path: 'contacts' }" 
+        to="/contacts" 
         class="btn btn-info mb-4 mr-2"
       >
         Contacts

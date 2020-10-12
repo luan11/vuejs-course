@@ -25,13 +25,22 @@ export default {
 		}
 	},
 	beforeRouteEnter(to, from, next) {
-		if(to.query.authenticated === 'true') {
+		/* if(to.query.authenticated === 'true') {
 			return next(vm => {
 				console.log('Course:', vm.course);
 			});
 		}
 
-		next('/contacts');
+		next('/contacts'); */
+
+		next();
+	},
+	beforeRouteLeave(to, from, next) {
+		console.log('beforeRouteLeave');
+
+		const confirm = window.confirm('You really want to exit?');
+
+		next(confirm);
 	}
 }
 </script>
