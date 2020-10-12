@@ -2,6 +2,10 @@
 	<div>
 		<h3 class="font-weight-light">Details about the contact ID {{ id }}</h3>
 
+		<pre>
+			<code>{{ params }}</code>
+		</pre>
+
 		<router-link 
 			class="btn btn-primary"
 			:to="{
@@ -24,6 +28,11 @@ export default {
 			required: true
 		}
 	},
+	data() {
+		return {
+			params: this.$route.params
+		};
+	},
 	/* data() {
 		return {
 			id: this.$route.params.id
@@ -39,8 +48,12 @@ export default {
 
 		next()
 	}, */
-	created() {
-		console.log(this.$props);
+	beforeRouteUpdate(to, from, next) {
+		console.log('beforeRouteUpdate');
+
+		this.params = to.params;
+
+		next();
 	}
 }
 </script>
