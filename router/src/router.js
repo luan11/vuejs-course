@@ -15,7 +15,7 @@ const parseIdParam = route => ({
   id: parseInt(route.params.id)
 });
 
-export default new VueRouter({
+const router = new VueRouter({
   mode: 'history',
   linkActiveClass: 'active',
   routes: [
@@ -43,7 +43,8 @@ export default new VueRouter({
           name: 'contact-edit',
           // path: 'edit/:id(\\d+)/:optional?', // optional param
           // path: 'edit/:id(\\d+)/:zeroOrMore*', // zero or more optional params
-          path: 'edit/:id(\\d+)/:oneOrMore+', // one or more optional params
+          // path: 'edit/:id(\\d+)/:oneOrMore+', // one or more optional params
+          path: 'edit/:id(\\d+)',
           alias: 'alter/:id(\\d+)',
           components: {
             default: ContactEdit,
@@ -91,3 +92,16 @@ export default new VueRouter({
     }
   ]
 });
+
+router.beforeEach((to, from, next) => {
+  console.log('beforeEach');
+  next();
+});
+
+router.afterEach((to, from) => {
+  console.log('afterEach');
+  console.log('to', to);
+  console.log('from', from);
+});
+
+export default router;
