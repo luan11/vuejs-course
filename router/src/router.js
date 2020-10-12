@@ -46,6 +46,16 @@ const router = new VueRouter({
           // path: 'edit/:id(\\d+)/:oneOrMore+', // one or more optional params
           path: 'edit/:id(\\d+)',
           alias: 'alter/:id(\\d+)',
+          beforeEnter(to, from, next) {
+            console.log('beforeEnter');
+
+            if(to.query.authenticated === 'true') {
+              next();
+              return;
+            }
+
+            next('/contacts');
+          },
           components: {
             default: ContactEdit,
             'contact-details': ContactDetails
