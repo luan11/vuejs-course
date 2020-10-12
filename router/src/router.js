@@ -109,6 +109,12 @@ router.beforeEach((to, from, next) => {
   next();
 });
 
+router.beforeResolve((to, from, next) => {
+  console.log('beforeResolve');
+
+  next();
+});
+
 router.afterEach((to, from) => {
   console.log('afterEach');
   console.log('to', to);
