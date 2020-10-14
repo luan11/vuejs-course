@@ -56,6 +56,11 @@ const router = new VueRouter({
             next('/contacts'); */
 
             next();
+            // next(true) -> Continue
+            // next(false) -> Block
+            // next('/contacts') -> Redirect
+            // next({ name: 'contacts' }) -> Redirect
+            // next(new Error(`Access denied: "${to.fullPath}"`)) -> Throw a error
           },
           components: {
             default: ContactEdit,
@@ -119,6 +124,10 @@ router.afterEach((to, from) => {
   console.log('afterEach');
   console.log('to', to);
   console.log('from', from);
+});
+
+router.onError(error => {
+  console.error(error.message);
 });
 
 export default router;
