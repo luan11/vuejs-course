@@ -46,6 +46,9 @@ const router = new VueRouter({
           // path: 'edit/:id(\\d+)/:oneOrMore+', // one or more optional params
           path: 'edit/:id(\\d+)',
           alias: 'alter/:id(\\d+)',
+          meta: {
+            authRequired: true
+          },
           beforeEnter(to, from, next) {
             console.log('beforeEnter');
 
@@ -111,6 +114,7 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   console.log('beforeEach');
+  console.log(`Auth required? ${to.meta.authRequired}`);
   next();
 });
 
