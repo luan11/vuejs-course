@@ -8,6 +8,9 @@ import ContactEdit from './views/contacts/ContactEdit.vue'
 import Home from './views/Home.vue'
 import Error404 from './views/Error404.vue'
 import Error404Contacts from './views/contacts/Error404Contacts.vue'
+import Login from './views/login/Login.vue'
+
+import EventBus from './event-bus'
 
 Vue.use(VueRouter)
 
@@ -93,6 +96,11 @@ const router = new VueRouter({
       path: '/home',
       component: Home
     },
+    {
+      name: 'login',
+      path: '/login',
+      component: Login
+    },
     /* {
       path: '/',
       redirect: '/contacts'
@@ -115,6 +123,22 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   console.log('beforeEach');
   console.log(`Auth required? ${to.meta.authRequired}`);
+
+  const isAuthenticated = EventBus.authenticated;
+
+  if(to.matched.some(route => route.meta.authRequired)) {
+    if(!isAuthenticated) {
+      next({
+        name: 'login',
+        query: {
+          redirect: to.fullPath
+        }
+      });
+
+      return;
+    }
+  }
+
   next();
 });
 
