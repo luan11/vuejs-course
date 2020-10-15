@@ -2,8 +2,11 @@
 	<div>
 		<h3 class="font-weight-light">Details about the contact ID {{ id }}</h3>
 
-		<pre>
-			<code>{{ params }}</code>
+		<div style="height: 900px"></div>
+
+		<pre id="params">
+			<code>Params: {{ params }}</code>
+			<code>Hash: {{ $route.hash }}</code>
 		</pre>
 
 		<router-link 
