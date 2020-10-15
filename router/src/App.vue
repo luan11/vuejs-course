@@ -35,7 +35,9 @@
         Contact 2
       </router-link> -->
 
-      <router-view></router-view>
+      <transition name="slide" mode="out-in">
+        <router-view></router-view>
+      </transition>
     </div>
   </div>
 </template>
@@ -45,3 +47,14 @@ export default {
   name: 'App'
 }
 </script>
+
+<style scoped>
+  .slide-enter, .slide-leave-to {
+    transform: translateX(-50px);
+    opacity: 0;
+  }
+
+  .slide-enter-active, .slider-leave-active {
+    transition: all .3s;
+  }
+</style>
