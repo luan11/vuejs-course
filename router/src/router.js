@@ -1,16 +1,17 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import Contacts from './views/contacts/Contacts.vue'
-import ContactDetails from './views/contacts/ContactDetails.vue'
-import ContactsHome from './views/contacts/ContactsHome.vue'
-import ContactEdit from './views/contacts/ContactEdit.vue'
-import Home from './views/Home.vue'
 import Error404 from './views/Error404.vue'
 import Error404Contacts from './views/contacts/Error404Contacts.vue'
 import Login from './views/login/Login.vue'
 
 import EventBus from './event-bus'
+
+const Contacts = () => import(/* webpackChunkName: "contacts" */ './views/contacts/Contacts.vue');
+const ContactsHome = () => import(/* webpackChunkName: "contacts" */ './views/contacts/ContactsHome.vue');
+const ContactDetails = () => import(/* webpackChunkName: "contacts" */ './views/contacts/ContactDetails.vue');
+const ContactEdit = () => import(/* webpackChunkName: "contacts" */ './views/contacts/ContactEdit.vue');
+const Home = () => import('./views/Home.vue');
 
 Vue.use(VueRouter)
 
