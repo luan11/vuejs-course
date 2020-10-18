@@ -47,11 +47,6 @@ const router = new VueRouter({
       path: '/contacts',
       component: Contacts,
       alias: '/my-contacts' /* ['/my-contacts', '/contacts-list'] */,
-      props: (route) => {
-        const kw = route.query.kw;
-
-        return kw ? { kw } : {};
-      },
       children: [
         {
           path: 'details/test',
@@ -101,7 +96,12 @@ const router = new VueRouter({
         {
           name: 'contacts',        
           path: '',
-          component: ContactsHome
+          component: ContactsHome,          
+          props: (route) => {
+            const kw = route.query.kw;
+
+            return kw ? { kw } : {};
+          }
         },
         {
           path: '*',

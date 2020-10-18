@@ -1,13 +1,15 @@
 <template>
-	<div>
-		<h3 class="font-weight-light">Details about the contact ID {{ id }}</h3>
+	<div v-if="contact">
+		<h3 class="font-weight-light">Name: {{ contact.name }}</h3>
 
-		<div style="height: 900px"></div>
+		<p>Email: {{ contact.email }}</p>
 
-		<pre id="params">
-			<code>Params: {{ params }}</code>
-			<code>Hash: {{ $route.hash }}</code>
-		</pre>
+		<button 
+			class="btn btn-secondary mr-2" 
+			@click="$router.back()"
+		>
+			Go back
+		</button>
 
 		<router-link 
 			class="btn btn-primary"
@@ -24,6 +26,8 @@
 </template>
 
 <script>
+import EventBus from './../../event-bus'
+
 export default {
 	props: {
 		id: {
@@ -33,7 +37,7 @@ export default {
 	},
 	data() {
 		return {
-			params: this.$route.params
+			contact: null
 		};
 	},
 	/* data() {
@@ -51,10 +55,16 @@ export default {
 
 		next()
 	}, */
+	/* created() {
+		this.contact = EventBus.searchContact(this.id);
+	}, */
+	beforeRouteEnter(to, from, next) {
+		next(vm => {
+			vm.contact = EventBus.searchContact(vm.id);
+		});
+	},
 	beforeRouteUpdate(to, from, next) {
-		console.log('beforeRouteUpdate');
-
-		this.params = to.params;
+		this.contact = EventBus.searchContact(this.id);
 
 		next();
 	}

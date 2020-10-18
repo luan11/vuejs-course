@@ -28,6 +28,7 @@
 
 <script>
 import ContactsListItem from './ContactsListItem'
+import EventBus from './../../event-bus'
 
 export default {
 	components: {
@@ -36,23 +37,7 @@ export default {
 	props: ['kw'],
 	data() {
 		return {
-			contacts: [
-				{
-					id: 1,
-					name: 'Pedro Paulo',
-					email: 'oi@luandev.ml'
-				},
-				{
-					id: 2,
-					name: 'Leonardo Santos',
-					email: 'oi@luandev.ml'
-				},
-				{
-					id: 3,
-					name: 'Luan Novais',
-					email: 'oi@luandev.ml'
-				}
-			]
+			contacts: []
 		}
 	},
 	computed: {
@@ -62,10 +47,13 @@ export default {
 			return !search ? this.contacts : this.contacts.filter(c => c.name.toLowerCase().includes(search.toLowerCase()));
 		}
 	},
+	created() {
+		this.contacts = EventBus.contacts
+	},
 	methods: {
 		doSearch(event) {
 			this.$router.push({
-				path: 'contacts',
+				name: 'contacts',
 				query: {
 					kw: event.target.value
 				}
