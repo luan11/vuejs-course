@@ -22,7 +22,7 @@ const parseIdParam = route => ({
 const router = new VueRouter({
   mode: 'history',
   linkActiveClass: 'active',
-  scrollBehavior(to, from, savedPosition) {
+  /* scrollBehavior(to, from, savedPosition) {
     return new Promise((resolve) => {
       setTimeout(() => {
         if(savedPosition) {
@@ -41,7 +41,7 @@ const router = new VueRouter({
         });
       }, 3000);
     });
-  },
+  }, */
   routes: [
     {
       path: '/contacts',
