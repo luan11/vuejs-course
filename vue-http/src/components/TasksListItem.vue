@@ -2,19 +2,24 @@
 	<li class="list-group-item d-flex">
 		<span>{{ task.title }}</span>
 		<span class="space"></span>
-		<button class="btn btn-sm mr-4"
+		<button 
+			class="btn btn-sm mr-4"
 			:class="cssClass"
 			:title="completeButtonTitle"
 		>
 			<i class="fa fa-check"></i>
 		</button>
-		<button class="btn btn-primary btn-sm mr-1"
+		<button 
+			class="btn btn-primary btn-sm mr-1"
 			title="Edit"
+			@click="$emit('edit', task)"
 		>
 			<i class="fa fa-pencil-alt"></i>
 		</button>
-		<button class="btn btn-danger btn-sm"
+		<button 
+			class="btn btn-danger btn-sm"
 			title="Delete"
+			@click="$emit('delete', task)"
 		>
 			<i class="fa fa-trash"></i>
 		</button>

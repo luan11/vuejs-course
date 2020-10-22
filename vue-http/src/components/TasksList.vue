@@ -1,24 +1,52 @@
 <template>
 	<div>
-		<h1 class="font-weight-light">Tasks</h1>
+		<div class="row">
+			<div class="col-sm-10">
+				<h1 class="font-weight-light">Tasks</h1>
+			</div>
+
+			<div class="col-sm-2">
+				<button 
+					class="btn btn-primary float-right"
+					@click="showForm = !showForm"
+				>
+					<i class="fa fa-plus mr-2"></i>
+					<span>Create</span>
+				</button>
+			</div>
+		</div>
 
 		<ul class="list-group" v-if="tasks.length > 0">
 			<TasksListItem
 				v-for="task in tasks"
 				:key="task.id"
 				:task="task"
+				@edit="selectTaskToEdit"
+				@delete="deleteTask"
 			/>
 		</ul>
 
 		<p v-else>No one task created.</p>
 
-		<TaskSave />
+		<TaskSave
+			v-if="showForm"
+			:task="selectedTask"
+			@create="createTask"
+			@edit="editTask"
+		/>
 	</div>
 </template>
 
 <script>
+import axios from 'axios'
+
+import config from './../config/config'
 import TaskSave from './TaskSave'
 import TasksListItem from './TasksListItem'
+
+const axiosConfig = {
+	baseURL: config.api.baseURL
+};
 
 export default {
 	components: {
@@ -27,24 +55,63 @@ export default {
 	},
 	data() {
 		return {
-			tasks: [
-				{
-					id: 1,
-					title: 'Learn TypeScript',
-					complete: true
-				},
-				{
-					id: 2,
-					title: 'Learn Vue',
-					complete: false
-				},
-				{
-					id: 3,
-					title: 'Learn Axios',
-					complete: false
-				}
-			]
+			tasks: [],
+			showForm: false,
+			selectedTask: null
 		}
-	}
+	},
+	created() {
+		axios
+			.get('tasks', axiosConfig)
+			.then(response => {
+				this.tasks = response.data;
+			});
+	},
+	methods: {
+		createTask(task) {
+			axios
+				.post('tasks', task, axiosConfig)
+				.then(response => {
+					this.tasks.push(response.data);
+					
+					this.reset();
+				});
+		},
+		editTask(task) {
+			axios
+				.put(`tasks/${task.id}`, task, axiosConfig)
+				.then(response => {
+					const index = this.tasks.findIndex(t => t.id === task.id);
+
+					this.tasks.splice(index, 1, response.data);
+
+					this.reset();
+				});
+		},
+		deleteTask(task) {
+			const confirm = window.confirm(`Do you want to delete the task "${task.title}"?`);
+
+			if(!confirm) {
+				return;
+			}
+
+			axios
+				.delete(`tasks/${task.id}`, axiosConfig)
+				.then(() => {
+					const index = this.tasks.findIndex(t => t.id === task.id);
+
+					this.tasks.splice(index, 1);
+				});
+		},
+		reset() {
+			this.selectedTask = null;
+			this.showForm = false;
+		},
+		selectTaskToEdit(task) {
+			this.selectedTask = task;
+			
+			this.showForm = true;
+		}
+	},
 }
 </script>
