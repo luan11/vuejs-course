@@ -41,15 +41,10 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from './../axios'
 
-import config from './../config/config'
 import TaskSave from './TaskSave'
 import TasksListItem from './TasksListItem'
-
-const axiosConfig = {
-	baseURL: config.api.baseURL
-};
 
 export default {
 	components: {
@@ -79,7 +74,7 @@ export default {
 	},
 	created() {
 		axios
-			.get('tasks', axiosConfig)
+			.get('/tasks')
 			.then(response => {
 				this.tasks = response.data;
 			}, error => {
@@ -100,7 +95,7 @@ export default {
 	methods: {
 		createTask(task) {
 			axios
-				.post('tasks', task, axiosConfig)
+				.post('/tasks', task)
 				.then(response => {
 					this.tasks.push(response.data);
 					
@@ -115,7 +110,7 @@ export default {
 			}
 
 			axios
-				.delete(`tasks/${task.id}`, axiosConfig)
+				.delete(`/tasks/${task.id}`)
 				.then(() => {
 					const index = this.tasks.findIndex(t => t.id === task.id);
 
@@ -124,7 +119,7 @@ export default {
 		},
 		editTask(task) {
 			axios
-				.put(`tasks/${task.id}`, task, axiosConfig)
+				.put(`/tasks/${task.id}`, task)
 				.then(response => {
 					const index = this.tasks.findIndex(t => t.id === task.id);
 
