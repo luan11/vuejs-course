@@ -27,7 +27,9 @@
 			/>
 		</ul>
 
-		<p v-else>No one task created.</p>
+		<p v-else-if="!errorMessage">No one task created.</p>
+
+		<div class="alert alert-danger" v-else>{{ errorMessage }}</div>
 
 		<TaskSave
 			v-if="showForm"
@@ -58,7 +60,8 @@ export default {
 		return {
 			tasks: [],
 			showForm: false,
-			selectedTask: null
+			selectedTask: null,
+			errorMessage: null
 		}
 	},
 	computed: {
@@ -79,6 +82,19 @@ export default {
 			.get('tasks', axiosConfig)
 			.then(response => {
 				this.tasks = response.data;
+			}, error => {
+				console.log('Then error callback', error);
+
+				return Promise.reject(error);
+			})
+			.catch(error => {
+				if(error.response) {
+					this.errorMessage = `Server returned an error: ${error.message} (${error.response.statusText})`;
+				} else if(error.request) {
+					this.errorMessage = `Error to call server: ${error.message}`;
+				} else {
+					this.errorMessage = `Error to make a request: ${error.message}`;
+				}
 			});
 	},
 	methods: {
