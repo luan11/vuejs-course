@@ -8,7 +8,7 @@
 			<div class="col-sm-2">
 				<button 
 					class="btn btn-primary float-right"
-					@click="showForm = !showForm"
+					@click="showFormCreateTask"
 				>
 					<i class="fa fa-plus mr-2"></i>
 					<span>Create</span>
@@ -23,6 +23,7 @@
 				:task="task"
 				@edit="selectTaskToEdit"
 				@delete="deleteTask"
+				@complete="editTask"
 			/>
 		</ul>
 
@@ -77,17 +78,6 @@ export default {
 					this.reset();
 				});
 		},
-		editTask(task) {
-			axios
-				.put(`tasks/${task.id}`, task, axiosConfig)
-				.then(response => {
-					const index = this.tasks.findIndex(t => t.id === task.id);
-
-					this.tasks.splice(index, 1, response.data);
-
-					this.reset();
-				});
-		},
 		deleteTask(task) {
 			const confirm = window.confirm(`Do you want to delete the task "${task.title}"?`);
 
@@ -102,6 +92,26 @@ export default {
 
 					this.tasks.splice(index, 1);
 				});
+		},
+		editTask(task) {
+			axios
+				.put(`tasks/${task.id}`, task, axiosConfig)
+				.then(response => {
+					const index = this.tasks.findIndex(t => t.id === task.id);
+
+					this.tasks.splice(index, 1, response.data);
+
+					this.reset();
+				});
+		},
+		showFormCreateTask() {
+			if(this.selectedTask) {
+				this.selectedTask = null;
+
+				return;
+			}
+
+			this.showForm = !this.showForm;
 		},
 		reset() {
 			this.selectedTask = null;

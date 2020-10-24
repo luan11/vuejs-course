@@ -6,9 +6,9 @@
       "complete": true
     },
     {
-      "id": 2,
-      "title": "Learn Vue",
-      "complete": false
+      "title": "Learn Vue.js",
+      "complete": false,
+      "id": 2
     },
     {
       "title": "Learn Axios",

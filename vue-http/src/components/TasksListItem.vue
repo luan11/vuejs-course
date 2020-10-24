@@ -6,6 +6,7 @@
 			class="btn btn-sm mr-4"
 			:class="cssClass"
 			:title="completeButtonTitle"
+			@click="completeTask"
 		>
 			<i class="fa fa-check"></i>
 		</button>
@@ -44,7 +45,14 @@ export default {
 		completeButtonTitle() {
 			return this.task.complete ? 'Remake' : 'Complete'
 		}
-	}
+	},
+	methods: {
+		completeTask() {
+			this.$emit('complete', Object.assign({}, this.task, {
+				complete: !this.task.complete
+			}));
+		}
+	},
 }
 </script>
 
