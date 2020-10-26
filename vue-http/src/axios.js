@@ -24,4 +24,12 @@ instance.defaults.baseURL = config.api.baseURL;
 	return error;
 }); */
 
+instance.interceptors.request.use(config => {
+	console.log(config);
+
+	config.headers.common['Authorization'] = `Bearer token_jwt`;
+	
+	return config;
+})
+
 export default instance;

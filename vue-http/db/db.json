@@ -30,6 +30,11 @@
       "title": "Learn Laravel",
       "complete": false,
       "id": 6
+    },
+    {
+      "title": "Learn about APIs",
+      "complete": false,
+      "id": 7
     }
   ]
 }
