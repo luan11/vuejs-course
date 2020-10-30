@@ -32,4 +32,12 @@ instance.interceptors.request.use(config => {
 	return config;
 })
 
+/* instance.interceptors.response.use(response => {
+	if(Array.isArray(response.data)) {
+		response.data = response.data.slice(1, 3);
+	}
+
+	return response;
+}) */
+
 export default instance;
