@@ -26,7 +26,7 @@ export default {
   components: {
     TasksList
   },
-  created() {
+  async created() {
     /* axios.all([
       axios.get('/tasks/1'),
       axios.get('/tasks/3')
@@ -35,7 +35,7 @@ export default {
       console.log(task1, task3)
     })); */
 
-    axios.all([
+    /* axios.all([
       axios.get('/tasks/1'),
       axios.get('/tasks/3')
     ])
@@ -43,7 +43,13 @@ export default {
       const [task1, task3] = response;
 
       console.log(task1, task3)
-    });
+    }); */
+
+    const task1 = await axios.get('/tasks/1');
+    const task3 = await axios.get('/tasks/3');
+
+    console.log('Requests')
+    console.log(task1, task3);
   }
 }
 </script>

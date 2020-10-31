@@ -102,20 +102,34 @@ export default {
 					this.reset();
 				});
 		},
-		deleteTask(task) {
+		async deleteTask(task) {
 			const confirm = window.confirm(`Do you want to delete the task "${task.title}"?`);
 
 			if(!confirm) {
 				return;
 			}
 
-			axios
+			/* axios
 				.delete(`/tasks/${task.id}`)
 				.then(() => {
 					const index = this.tasks.findIndex(t => t.id === task.id);
 
 					this.tasks.splice(index, 1);
-				});
+				}); */
+
+			try {
+				const response = await axios.delete(`/tasks/${task.id}`);
+
+				console.log(response);
+
+				const index = this.tasks.findIndex(t => t.id === task.id);
+
+				this.tasks.splice(index, 1);
+			} catch(error) {
+				console.log(error);
+			} finally {
+				console.log('Finally');
+			}
 		},
 		editTask(task) {
 			axios
