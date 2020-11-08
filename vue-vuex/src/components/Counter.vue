@@ -32,14 +32,16 @@ export default {
 	/* computed: mapState([
 		'counter'
 	]), */
-	computed: mapState({
-		// counter: state => state.counter
-		counter: 'counter',
-		counterAlias: 'counter',
-		multiplicatedCounter(state) {
-			return state.counter * this.localCounter
-		}	
-	}),
+	computed: {
+		...mapState({
+			// counter: state => state.counter
+			counter: 'counter',
+			counterAlias: 'counter',
+			multiplicatedCounter(state) {
+				return state.counter * this.localCounter
+			}	
+		})
+	},
 	methods: {
 		decrement() {
 			this.$store.state.counter--;

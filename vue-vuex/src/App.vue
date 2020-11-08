@@ -7,17 +7,26 @@
       </div>
 
       <div class="container">
-        <Counter/>
+        <div class="row">
+          <div class="col-sm-9 border-right">
+            <TasksList/>
+          </div>
+          <div class="col-sm-3">
+            <Counter/>
+          </div>
+        </div>
       </div>
   </div>
 </template>
 
 <script>
-import Counter from '@/components/Counter';
+import Counter from '@/components/Counter'
+import TasksList from '@/components/TasksList'
 
 export default {
   components: {
-    Counter
+    Counter,
+    TasksList
   }
 }
 </script>
