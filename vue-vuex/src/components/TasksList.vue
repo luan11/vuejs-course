@@ -72,6 +72,9 @@ export default {
 			'doneTasksCount'
 		])
 	},
+	created() {
+		this.$store.commit('listTasks');
+	},
 	methods: {
 		showCreateTaskForm() {
 			if(this.selectedTask) {
