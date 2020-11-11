@@ -16,11 +16,11 @@
 			</div>
 		</div>
 
-		<h3 class="font-weight-light mt-4">To Do ({{ $store.getters.tasksToDo.length }})</h3>
+		<h3 class="font-weight-light mt-4">To Do ({{ tasksToDo.length }})</h3>
 
-		<ul class="list-group" v-if="$store.getters.tasksToDo.length > 0">
+		<ul class="list-group" v-if="tasksToDo.length > 0">
 			<TasksListItem
-				v-for="task in $store.getters.tasksToDo" :key="task.id"
+				v-for="task in tasksToDo" :key="task.id"
 				:task="task"
 				@edit="selectTaskForEdit"
 			/>
@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import {mapState} from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 
 import TasksListItem from '@/components/TasksListItem'
 import TaskSave from '@/components/TaskSave'
@@ -66,9 +66,11 @@ export default {
 	},
 	computed: {
 		...mapState(['tasks']),
-		doneTasks() {
-			return this.$store.getters.doneTasks
-		}
+		...mapGetters([
+			'doneTasks',
+			'tasksToDo',
+			'doneTasksCount'
+		])
 	},
 	methods: {
 		showCreateTaskForm() {
