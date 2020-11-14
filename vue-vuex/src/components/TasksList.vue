@@ -73,7 +73,8 @@ export default {
 		])
 	},
 	created() {
-		this.$store.commit('listTasks', {
+		this.$store.commit({
+			type: 'listTasks',
 			tasks: [
 				{
 					id: 1,
