@@ -73,7 +73,25 @@ export default {
 		])
 	},
 	created() {
-		this.$store.commit('listTasks');
+		this.$store.commit('listTasks', {
+			tasks: [
+				{
+					id: 1,
+					title: 'Aprender ... #1',
+					done: true
+				},
+				{
+					id: 2,
+					title: 'Aprender ... #2',
+					done: false
+				},
+				{
+					id: 3,
+					title: 'Aprender ... #3',
+					done: true
+				}
+			]
+		});
 	},
 	methods: {
 		showCreateTaskForm() {
