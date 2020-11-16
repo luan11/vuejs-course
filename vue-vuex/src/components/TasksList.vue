@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations, mapState } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 
 import TasksListItem from '@/components/TasksListItem'
 import TaskSave from '@/components/TaskSave'
@@ -94,28 +94,30 @@ export default {
 			]
 		}); */
 
-		this.listTasks({
-			tasks: [
-				{
-					id: 1,
-					title: 'Aprender ... #1',
-					done: true
-				},
-				{
-					id: 2,
-					title: 'Aprender ... #2',
-					done: false
-				},
-				{
-					id: 3,
-					title: 'Aprender ... #3',
-					done: true
-				}
-			]
-		});
+		setTimeout(() => {
+			this.$store.dispatch('listTasks', {
+				tasks: [
+					{
+						id: 1,
+						title: 'Aprender ... #1',
+						done: true
+					},
+					{
+						id: 2,
+						title: 'Aprender ... #2',
+						done: false
+					},
+					{
+						id: 3,
+						title: 'Aprender ... #3',
+						done: true
+					}
+				]
+			});
+		}, 1000);
 	},
 	methods: {
-		...mapMutations(['listTasks']), // ['listTasks'] || {loadTasks: 'listTasks'} || (commit, payload, options) => { commit('listTasks', payload, options) } 
+		// ...mapMutations(['listTasks']), // ['listTasks'] || {loadTasks: 'listTasks'} || (commit, payload, options) => { commit('listTasks', payload, options) } 
 		showCreateTaskForm() {
 			if(this.selectedTask) {
 				this.selectedTask = null;

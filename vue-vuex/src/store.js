@@ -18,5 +18,10 @@ export default new Vuex.Store({
 		listTasks: (state, { tasks }) => {
 			state.tasks = tasks;
 		}
+	},
+	actions: {
+		listTasks: (context, payload) => {
+			context.commit('listTasks', payload);
+		}
 	}
 })
