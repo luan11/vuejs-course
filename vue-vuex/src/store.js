@@ -4,17 +4,24 @@ import Vuex from 'vuex'
 Vue.use(Vuex);
 
 const counterModule = {
+	namespaced: true,
 	state: {
 		counter: 0
+	},
+	getters: {
+		currentCounter: state => state.counter
 	}
 };
 
 const tasksModule = {
+	namespaced: true,
 	state: {
 		tasks: []
 	},
 	getters: {
-		doneTasks: state => state.tasks.filter(task => task.done),
+		doneTasks: (state/* , getters, rootState, rootGetters */) => {
+			return state.tasks.filter(task => task.done);
+		},
 		tasksToDo: state => state.tasks.filter(task => !task.done),
 		doneTasksCount: (state, getters) => getters.doneTasks.length,
 		getTaskById: state => id => state.tasks.find(task => task.id === id)
@@ -56,6 +63,9 @@ const tasksModule = {
 };
 
 const store = new Vuex.Store({
+	state: {
+		user: 'luan11'
+	},
 	modules: {
 		counter: counterModule,
 		tasks: tasksModule

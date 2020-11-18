@@ -48,7 +48,9 @@
 </template>
 
 <script>
-import { mapActions, mapGetters, mapState } from 'vuex'
+import { createNamespacedHelpers } from 'vuex'
+
+const { mapActions, mapGetters, mapState } = createNamespacedHelpers('tasks');
 
 import TasksListItem from '@/components/TasksListItem'
 import TaskSave from '@/components/TaskSave'

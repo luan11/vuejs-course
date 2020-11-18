@@ -33,13 +33,13 @@ export default {
 		'counter'
 	]), */
 	computed: {
-		...mapState({
-			counter: state => state.counter.counter,
+		...mapState('counter', {
+			counter: state => state.counter,
 			// counter: 'counter',
 			// counterAlias: 'counter',
-			counterAlias: state => state.counter.counter,
+			counterAlias: state => state.counter,
 			multiplicatedCounter(state) {
-				return state.counter.counter * this.localCounter
+				return state.counter * this.localCounter
 			}	
 		})
 	},
