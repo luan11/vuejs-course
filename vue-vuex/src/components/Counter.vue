@@ -34,20 +34,21 @@ export default {
 	]), */
 	computed: {
 		...mapState({
-			// counter: state => state.counter
-			counter: 'counter',
-			counterAlias: 'counter',
+			counter: state => state.counter.counter,
+			// counter: 'counter',
+			// counterAlias: 'counter',
+			counterAlias: state => state.counter.counter,
 			multiplicatedCounter(state) {
-				return state.counter * this.localCounter
+				return state.counter.counter * this.localCounter
 			}	
 		})
 	},
 	methods: {
 		decrement() {
-			this.$store.state.counter--;
+			this.$store.state.counter.counter--;
 		},
 		increment() {
-			this.$store.state.counter++;
+			this.$store.state.counter.counter++;
 		}
 	}
 }

@@ -3,9 +3,14 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex);
 
-export default new Vuex.Store({
+const counterModule = {
 	state: {
-		counter: 0,
+		counter: 0
+	}
+};
+
+const tasksModule = {
+	state: {
 		tasks: []
 	},
 	getters: {
@@ -48,4 +53,13 @@ export default new Vuex.Store({
 			commit('listTasks', { tasks });
 		}
 	}
-})
+};
+
+const store = new Vuex.Store({
+	modules: {
+		counter: counterModule,
+		tasks: tasksModule
+	}
+});
+
+export default store
