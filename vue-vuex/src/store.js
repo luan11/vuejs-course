@@ -24,7 +24,13 @@ const tasksModule = {
 		},
 		tasksToDo: state => state.tasks.filter(task => !task.done),
 		doneTasksCount: (state, getters) => getters.doneTasks.length,
-		getTaskById: state => id => state.tasks.find(task => task.id === id)
+		getTaskById: state => id => state.tasks.find(task => task.id === id),
+		welcome: (state, getters, rootState, rootGetters) => {
+			console.log('Global State: ', rootState.user);
+			console.log('Global Getter: ', rootGetters.welcomeMessage);
+
+			return rootGetters.welcomeMessage
+		}
 	},
 	mutations: {
 		listTasks: (state, { tasks }) => {
@@ -58,13 +64,30 @@ const tasksModule = {
 		listTasks: async ({ commit, dispatch }) => {
 			const tasks = await dispatch('searchTasks');
 			commit('listTasks', { tasks });
+
+			commit('login', 'Luan Novais', {
+				root: true
+			});
 		}
 	}
 };
 
 const store = new Vuex.Store({
 	state: {
-		user: 'luan11'
+		user: 'Luan'
+	},
+	getters: {
+		welcomeMessage: state => `Hello ${state.user}`
+	},
+	actions: {
+		login: ({ commit }, user) => {
+			commit('login', user);
+		}
+	},
+	mutations: {
+		login: (state, user) => {
+			state.user = user;
+		}
 	},
 	modules: {
 		counter: counterModule,

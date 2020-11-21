@@ -71,7 +71,8 @@ export default {
 		...mapGetters([
 			'doneTasks',
 			'tasksToDo',
-			'doneTasksCount'
+			'doneTasksCount',
+			'welcome'
 		])
 	},
 	created() {
@@ -97,8 +98,12 @@ export default {
 		}); */
 
 		setTimeout(async () => {
+			console.log('Current user: ', this.welcome);
+
 			await this.listTasks();
 			console.log('Actions executed');
+
+			console.log('Current user: ', this.welcome);
 		}, 1000);
 	},
 	methods: {
