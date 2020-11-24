@@ -20,8 +20,8 @@
 </template>
 
 <script>
-import Counter from '@/components/Counter'
-import TasksList from '@/components/TasksList'
+import Counter from '@/resources/counter/_components/Counter'
+import TasksList from '@/resources/tasks/_components/TasksList'
 
 export default {
   components: {

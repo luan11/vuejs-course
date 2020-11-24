@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import counter from '@/store/modules/counter'
-import tasks from '@/store/modules/tasks'
+import counter from '@/resources/counter/_store/index'
+import tasks from '@/resources/tasks/_store/index'
 
 Vue.use(Vuex);
 
