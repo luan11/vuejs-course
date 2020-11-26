@@ -50,10 +50,11 @@
 <script>
 import { createNamespacedHelpers } from 'vuex'
 
-const { mapActions, mapGetters, mapState } = createNamespacedHelpers('tasks');
-
+import register from './../_store/register'
 import TasksListItem from './TasksListItem'
 import TaskSave from './TaskSave'
+
+const { mapActions, mapGetters, mapState } = createNamespacedHelpers('tasks');
 
 export default {
 	components: {
@@ -96,6 +97,8 @@ export default {
 				}
 			]
 		}); */
+
+		register(this.$store);
 
 		setTimeout(async () => {
 			console.log('Current user: ', this.welcome);

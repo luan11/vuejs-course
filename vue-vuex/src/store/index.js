@@ -2,7 +2,6 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 import counter from '@/resources/counter/_store/index'
-import tasks from '@/resources/tasks/_store/index'
 
 Vue.use(Vuex);
 
@@ -27,8 +26,7 @@ const mutations = {
 };
 
 const modules = {
-	counter,
-	tasks
+	counter
 };
 
 export default new Vuex.Store({
