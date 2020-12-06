@@ -23,6 +23,7 @@
 				v-for="task in tasksToDo" :key="task.id"
 				:task="task"
 				@edit="selectTaskForEdit"
+				@done="doneTask({task: $event})"
 			/>
 		</ul>
 
@@ -35,6 +36,7 @@
 				v-for="task in doneTasks" :key="task.id"
 				:task="task"
 				@edit="selectTaskForEdit"
+				@done="doneTask({task: $event})"
 			/>
 		</ul>
 
@@ -77,40 +79,15 @@ export default {
 		])
 	},
 	created() {
-		/* this.$store.commit({
-			type: 'listTasks',
-			tasks: [
-				{
-					id: 1,
-					title: 'Aprender ... #1',
-					done: true
-				},
-				{
-					id: 2,
-					title: 'Aprender ... #2',
-					done: false
-				},
-				{
-					id: 3,
-					title: 'Aprender ... #3',
-					done: true
-				}
-			]
-		}); */
+		register(this.$store)
 
-		register(this.$store);
-
-		setTimeout(async () => {
-			console.log('Current user: ', this.welcome);
-
-			await this.listTasks();
-			console.log('Actions executed');
-
-			console.log('Current user: ', this.welcome);
-		}, 1000);
+		this.listTasks()
 	},
 	methods: {
-		...mapActions(['listTasks']),
+		...mapActions([
+			'listTasks',
+			'doneTask'
+		]),
 		// ...mapMutations(['listTasks']), // ['listTasks'] || {loadTasks: 'listTasks'} || (commit, payload, options) => { commit('listTasks', payload, options) } 
 		showCreateTaskForm() {
 			if(this.selectedTask) {

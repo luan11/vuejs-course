@@ -1,35 +1,32 @@
+import TasksService from './../_services/TasksService'
+
 import * as types from './mutation-types'
 
 export default {
-	searchTasks: () => {
-		return new Promise(resolve => {
-			setTimeout(() => {
-				resolve([
-					{
-						id: 1,
-						title: 'Aprender ... #1',
-						done: true
-					},
-					{
-						id: 2,
-						title: 'Aprender ... #2',
-						done: false
-					},
-					{
-						id: 3,
-						title: 'Aprender ... #3',
-						done: true
-					}
-				]);
-			}, 2000);
-		});
-	},
-	listTasks: async ({ commit, dispatch }) => {
-		const tasks = await dispatch('searchTasks');
-		commit(types.LIST_TASKS, { tasks });
+	doneTask: ({ dispatch }, payload) => {
+		const task = Object.assign({}, payload.task)
 
-		commit('login', 'Luan Novais', {
-			root: true
-		});
+		task.done = !task.done
+
+		dispatch('editTask', { task })
+	},
+	createTask: ({ commit }, { task }) => {
+		return TasksService.postTask(task)
+			.then(response => commit(types.CREATE_TASK, { task: response.data }))
+	},
+	editTask: async ({ commit }, { task }) => {
+		const response = await TasksService.putTask(task)
+
+		commit(types.EDIT_TASK, { task: response.data })
+	},
+	deleteTask: async ({ commit }, { task }) => {
+		await TasksService.deleteTask(task.id)
+
+		commit(types.DELETE_TASK, { task })
+	},
+	listTasks: async ({ commit }) => {
+		const response = await TasksService.getTasks()
+
+		commit(types.LIST_TASKS, { tasks: response.data })
 	}
-};
+}
