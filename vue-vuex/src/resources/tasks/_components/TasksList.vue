@@ -24,6 +24,7 @@
 				:task="task"
 				@edit="selectTaskForEdit"
 				@done="doneTask({task: $event})"
+				@delete="confirmDelete"
 			/>
 		</ul>
 
@@ -37,6 +38,7 @@
 				:task="task"
 				@edit="selectTaskForEdit"
 				@done="doneTask({task: $event})"
+				@delete="confirmDelete"
 			/>
 		</ul>
 
@@ -65,12 +67,11 @@ export default {
 	},
 	data() {
 		return {
-			showForm: false,
-			selectedTask: null
+			showForm: false
 		}
 	},
 	computed: {
-		...mapState(['tasks']),
+		...mapState(['tasks', 'selectedTask']),
 		...mapGetters([
 			'doneTasks',
 			'tasksToDo',
@@ -86,12 +87,22 @@ export default {
 	methods: {
 		...mapActions([
 			'listTasks',
-			'doneTask'
+			'deleteTask',
+			'doneTask',
+			'selectTask',
+			'resetSelectedTask'
 		]),
 		// ...mapMutations(['listTasks']), // ['listTasks'] || {loadTasks: 'listTasks'} || (commit, payload, options) => { commit('listTasks', payload, options) } 
+		confirmDelete(task) {
+			const confirm = window.confirm(`Do you really want to delete the task "${task.title}"?`);
+
+			if(confirm) {
+				this.deleteTask({ task });
+			}
+		},
 		showCreateTaskForm() {
 			if(this.selectedTask) {
-				this.selectedTask = null;
+				this.resetSelectedTask()
 				return;
 			}
 
@@ -99,11 +110,11 @@ export default {
 		},
 		selectTaskForEdit(task) {
 			this.showForm = true;
-			this.selectedTask = task;
+			this.selectTask({ task })
 		},
 		reset() {
 			this.showForm = false;
-			this.selectedTask = null;
+			this.resetSelectedTask()
 		}
 	},
 }

@@ -1,4 +1,10 @@
-import { CREATE_TASK, EDIT_TASK, DELETE_TASK, LIST_TASKS } from './mutation-types'
+import { 
+	CREATE_TASK, 
+	EDIT_TASK, 
+	DELETE_TASK, 
+	LIST_TASKS, 
+	SELECT_TASK 
+} from './mutation-types'
 
 export default {
 	[CREATE_TASK]: (state, { task }) => {
@@ -16,5 +22,8 @@ export default {
 	},
 	[LIST_TASKS]: (state, { tasks }) => {
 		state.tasks = tasks;
+	},
+	[SELECT_TASK]: (state, { task }) => {
+		state.selectedTask = task;
 	}
 };
