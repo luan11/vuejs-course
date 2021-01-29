@@ -15,18 +15,19 @@
 							type="text"
 							class="form-control"
 							placeholder="Title of task"
-							:value="task && task.title"
+							v-model="task.title"
 						>
 					</div>
 				</div>
 
-				<div class="col-sm-2" v-if="task">
+				<div class="col-sm-2" v-if="selectedTask">
 					<div class="form-group">
 						<label for="">Done?</label>
 						<button
 							type="button"
 							class="btn btn-sm d-block"
 							:class="btnClass"
+							@click="task.done = !task.done"
 						>
 							<i class="fa fa-check"></i>
 						</button>
@@ -40,31 +41,44 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
-	props: {
-		task: {
-			type: Object,
-			required: true
+	data() {
+		return {
+			task: {}			
 		}
 	},
 	computed: {
+		...mapState('tasks', [
+			'selectedTask'
+		]),
 		columnClass() {
-			return this.task ? 'col-sm-10' : 'col-sm-12';
+			return this.selectedTask ? 'col-sm-10' : 'col-sm-12';
 		},
 		btnClass() {
-			return this.task && this.task.done ? 'btn-success' : 'btn-secondary';
+			return this.selectedTask && this.task.done ? 'btn-success' : 'btn-secondary';
+		}
+	},
+	watch: {
+		selectedTask(newTask) {
+			this.sync(newTask)
 		}
 	},
 	created() {
-		if(this.task) {
-			console.log('Task by ID:', this.$store.getters['tasks/getTaskById'](this.task.id))
-		}
+		this.sync(this.selectedTask)
 	},
 	methods: {
 		save() {
-			const action = this.task ? 'create' : 'edit';
+			const action = !this.selectedTask ? 'create' : 'edit';
 
-			console.table(action);
+			this.$emit('save', { action, task: this.task })
+		},
+		sync(newTask) {
+			this.task = Object.assign(
+				{},
+				newTask || { title: '', done: false }
+			)
 		}
 	}
 }

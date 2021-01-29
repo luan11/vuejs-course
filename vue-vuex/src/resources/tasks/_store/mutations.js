@@ -3,7 +3,8 @@ import {
 	EDIT_TASK, 
 	DELETE_TASK, 
 	LIST_TASKS, 
-	SELECT_TASK 
+	SELECT_TASK, 
+	SET_ERROR
 } from './mutation-types'
 
 export default {
@@ -25,5 +26,8 @@ export default {
 	},
 	[SELECT_TASK]: (state, { task }) => {
 		state.selectedTask = task;
+	},
+	[SET_ERROR]: (state, { error }) => {
+		state.error = error;
 	}
 };

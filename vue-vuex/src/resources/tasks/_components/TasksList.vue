@@ -46,8 +46,10 @@
 
 		<TaskSave
 			v-if="showForm"
-			:task="selectedTask"
+			@save="saveTask"
 		/>
+
+		<div class="alert alert-danger" v-if="error">{{ error.message }}</div>
 	</div>
 </template>
 
@@ -71,7 +73,7 @@ export default {
 		}
 	},
 	computed: {
-		...mapState(['tasks', 'selectedTask']),
+		...mapState(['error', 'selectedTask']),
 		...mapGetters([
 			'doneTasks',
 			'tasksToDo',
@@ -86,8 +88,10 @@ export default {
 	},
 	methods: {
 		...mapActions([
-			'listTasks',
+			'createTask',
 			'deleteTask',
+			'editTask',
+			'listTasks',
 			'doneTask',
 			'selectTask',
 			'resetSelectedTask'
@@ -107,6 +111,19 @@ export default {
 			}
 
 			this.showForm = !this.showForm;
+		},
+		async saveTask(event) {
+			switch(event.action) {
+				case 'create':
+					await this.createTask({ task: event.task })
+				break;
+
+				case 'edit':
+					await this.editTask({ task: event.task })
+				break;
+			}
+			
+			this.reset()
 		},
 		selectTaskForEdit(task) {
 			this.showForm = true;
